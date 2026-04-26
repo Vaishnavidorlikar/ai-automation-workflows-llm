@@ -12,9 +12,6 @@ import yaml
 import json
 import time
 import pandas as pd
-import plotly.graph_objects as go
-import plotly.express as px
-from datetime import datetime, timedelta
 
 # Add src to path for imports
 sys.path.append(str(Path(__file__).parent / 'src'))
@@ -78,6 +75,74 @@ def create_status_badge(status, text):
     }
     color = color_map.get(status, '#6c757d')
     return f'<span style="background-color: {color}; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.875rem;">{text}</span>'
+
+def create_enterprise_dashboard():
+    """Create Enterprise Performance Dashboard with corrected subplot types."""
+    fig = make_subplots(
+        rows=2, cols=2,
+        subplot_titles=('API Response Times', 'Success Rate', 'Request Volume', 'System Health'),
+        specs=[[{"type": "scatter"}, {"type": "indicator"}],
+                [{"type": "bar"}, {"type": "indicator"}]]  # FIXED: "gauge" -> "indicator"
+    )
+
+    # Simulate time series data
+    time_points = pd.date_range('2024-01-01', periods=24, freq='H')
+    response_times = np.random.normal(0.15, 0.05, 24)
+    request_volume = np.random.poisson(50, 24)
+
+    # Response times
+    fig.add_trace(
+        go.Scatter(x=time_points, y=response_times, name='Response Time', line=dict(color='#1f77b4')),
+        row=1, col=1
+    )
+
+    # Success rate indicator
+    fig.add_trace(
+        go.Indicator(
+            mode="number+gauge+delta",
+            value=98.5,
+            domain={'x': [0, 1], 'y': [0, 1]},
+            title={'text': "Success Rate (%)"},
+            delta={'reference': 95},
+            gauge={'axis': {'range': [None, 100]}, 'bar': {'color': '#2ca02c'}, 'steps': [
+                {'range': [0, 50], 'color': 'lightgray'},
+                {'range': [50, 80], 'color': 'yellow'},
+                {'range': [80, 100], 'color': 'lightgreen'}
+            ], 'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': 90}}
+        ),
+        row=1, col=2
+    )
+
+    # Request volume
+    fig.add_trace(
+        go.Bar(x=time_points[:12], y=request_volume[:12], name='Request Volume', marker_color='#ff7f0e'),
+        row=2, col=1
+    )
+
+    # System health indicator
+    fig.add_trace(
+        go.Indicator(
+            mode="gauge+number+delta",
+            value=99.9,
+            domain={'x': [0, 1], 'y': [0, 1]},
+            title={'text': "System Health (%)"},
+            delta={'reference': 99},
+            gauge={'axis': {'range': [None, 100]}, 'bar': {'color': '#9467bd'}, 'steps': [
+                {'range': [0, 50], 'color': 'lightgray'},
+                {'range': [50, 80], 'color': 'yellow'},
+                {'range': [80, 100], 'color': 'lightgreen'}
+            ], 'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': 95}}
+        ),
+        row=2, col=2
+    )
+
+    fig.update_layout(
+        height=800,
+        title_text="🏢 Enterprise Performance Dashboard",
+        showlegend=False
+    )
+
+    return fig
 
 def main():
     """Main dashboard application."""
@@ -230,6 +295,11 @@ def main():
         )
         
         st.plotly_chart(fig, use_container_width=True)
+        
+        # Enterprise Performance Dashboard
+        st.subheader("🏢 Enterprise Performance Dashboard")
+        enterprise_fig = create_enterprise_dashboard()
+        st.plotly_chart(enterprise_fig, use_container_width=True)
         
         # Activity Log
         st.subheader("📝 Recent Activity")
