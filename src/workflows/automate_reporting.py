@@ -7,10 +7,10 @@ from typing import Dict, List, Optional, Any
 from datetime import datetime, timedelta
 import json
 import os
-
-from ..agents.report_agent import ReportAgent
-from ..agents.summarizer import SummarizerAgent
-from ..utils.llm_client import LLMClient
+from src.agents.email_agent import EmailAgent
+from src.agents.report_agent import ReportAgent
+from src.agents.summarizer import SummarizerAgent
+from src.utils.llm_client import LLMClient
 
 
 class AutomatedReportingWorkflow:

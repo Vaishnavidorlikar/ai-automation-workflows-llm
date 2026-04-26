@@ -123,6 +123,109 @@ development:
     print_requests: false
     print_responses: false
 
+# JARVIS Assistant Configuration
+jarvis:
+  llm_provider: "mock"  # Use same provider as main LLM config
+  voice:
+    rate: 200
+    volume: 0.9
+    voice_id: null  # System default
+  models:
+    gesture_model: "models/gesture_recognition.h5"
+    speech_model: "models/speech_recognition.h5"
+  data:
+    storage_path: "data/jarvis_data/"
+    log_file: "logs/jarvis.log"
+  features:
+    voice_commands: true
+    gesture_control: true
+    data_analysis: true
+    continuous_listening: true
+
+# Gesture Recognition Configuration
+gesture_recognition:
+  model_path: "models/gestures/gesture_classifier.h5"
+  camera:
+    device_id: 0  # Default camera
+    resolution: [640, 480]
+    fps: 30
+  detection:
+    confidence_threshold: 0.5
+    smoothing_window: 5
+    max_hands: 2
+  gestures:
+    - thumbs_up
+    - thumbs_down
+    - peace
+    - rock
+    - paper
+    - scissors
+    - ok
+    - point
+    - open_palm
+    - fist
+
+# Deep Learning Configuration
+deep_learning:
+  models_directory: "models/deep_learning/"
+  training:
+    default_epochs: 50
+    batch_size: 32
+    validation_split: 0.2
+    early_stopping: true
+    patience: 5
+  image_models:
+    default_input_shape: [224, 224, 3]
+    pretrained_weights: true
+  text_models:
+    max_vocab_size: 10000
+    embedding_dim: 128
+    max_sequence_length: 256
+
+# Machine Learning Configuration
+machine_learning:
+  models_directory: "models/sklearn/"
+  cross_validation:
+    folds: 5
+    scoring: "accuracy"
+  hyperparameter_tuning:
+    enabled: true
+    cv_folds: 3
+    n_iter: 50
+  feature_selection:
+    methods: ["selectkbest", "rfe", "pca"]
+    max_features: 50
+  ensemble:
+    voting_classifier: true
+    stacking: true
+
+# Data Analysis Configuration
+data_analysis:
+  output_directory: "data/analysis/"
+  visualizations:
+    default_format: "png"
+    dpi: 300
+    figure_size: [10, 6]
+    style: "seaborn"
+  statistics:
+    significance_level: 0.05
+    correlation_threshold: 0.7
+  preprocessing:
+    handle_missing: "auto"
+    scaling_method: "standard"
+    encoding_method: "auto"
+
+# AIML Configuration
+aiml:
+  patterns_file: "data/aiml/patterns.aiml"
+  learning:
+    enabled: true
+    save_interactions: true
+    learning_rate: 0.1
+  response:
+    default_fallback: "I don't understand. Can you rephrase that?"
+    max_response_length: 200
+
 # Production Configuration
 production:
   # Performance

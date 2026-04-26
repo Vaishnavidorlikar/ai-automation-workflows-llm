@@ -6,8 +6,8 @@ import logging
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
-from ..utils.llm_client import LLMClient
-from ..utils.prompt_templates import (
+from src.utils.llm_client import LLMClient
+from src.utils.prompt_templates import (
     TEXT_SUMMARY_TEMPLATE, 
     MEETING_SUMMARY_TEMPLATE,
     DOCUMENT_SUMMARY_TEMPLATE

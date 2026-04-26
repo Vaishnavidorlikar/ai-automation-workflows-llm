@@ -19,6 +19,7 @@ from agents.report_agent import ReportAgent
 from agents.summarizer import SummarizerAgent
 from workflows.automate_reporting import AutomatedReportingWorkflow
 from workflows.customer_support_flow import CustomerSupportWorkflow
+from integration.ai_orchestrator import AIOrchestrator
 
 
 def setup_logging(config: dict):
@@ -78,6 +79,22 @@ def load_config(config_path: str = 'config/config.yaml') -> dict:
 
 def initialize_components(config: dict):
     """Initialize all components with given configuration."""
+    print("🚀 Initializing AI Orchestrator with all components...")
+    
+    # Initialize the unified orchestrator
+    orchestrator = AIOrchestrator(config)
+    
+    # Initialize all components
+    if orchestrator.initialize_all():
+        print("✅ All components initialized successfully")
+        return orchestrator
+    else:
+        print("❌ Failed to initialize components")
+        return None
+
+# Legacy initialization function for backward compatibility
+def initialize_legacy_components(config: dict):
+    """Initialize components using legacy approach."""
     llm_config = config.get('llm', {})
     default_provider = llm_config.get('default_provider', 'mock')
     
@@ -116,7 +133,195 @@ def initialize_components(config: dict):
     }
 
 
-def demo_email_processing(components: dict):
+def demo_jarvis_assistant(orchestrator: AIOrchestrator):
+    """Demonstrate JARVIS assistant capabilities."""
+    print("\n" + "="*50)
+    print("🤖 JARVIS ASSISTANT DEMO")
+    print("="*50)
+    
+    # Start JARVIS
+    jarvis_status = orchestrator.start_jarvis()
+    print(f"JARVIS Status: {jarvis_status['message']}")
+    
+    # Test voice commands
+    test_commands = [
+        "Hello JARVIS, how are you?",
+        "Analyze some data for me",
+        "What's the weather like?",
+        "Thank you JARVIS"
+    ]
+    
+    print("\n🎤 Testing voice commands:")
+    for command in test_commands:
+        response = orchestrator.process_voice_command(command)
+        print(f"  Command: {command}")
+        print(f"  Response: {response[:100]}...")
+        print()
+
+
+def demo_gesture_recognition(orchestrator: AIOrchestrator):
+    """Demonstrate gesture recognition capabilities."""
+    print("\n" + "="*50)
+    print("👋 GESTURE RECOGNITION DEMO")
+    print("="*50)
+    
+    print("Starting gesture recognition...")
+    print("(Press 'q' in the gesture window to stop)")
+    
+    # Start gesture recognition in background
+    gesture_status = orchestrator.start_gesture_recognition()
+    print(f"Gesture Status: {gesture_status['message']}")
+    
+    # Test a few gesture detections
+    import time
+    for i in range(3):
+        time.sleep(2)
+        gesture = orchestrator.detect_gesture()
+        if gesture:
+            print(f"  Detected gesture: {gesture}")
+        else:
+            print(f"  No gesture detected (attempt {i+1})")
+
+
+def demo_deep_learning(orchestrator: AIOrchestrator):
+    """Demonstrate deep learning capabilities."""
+    print("\n" + "="*50)
+    print("🧠 DEEP LEARNING DEMO")
+    print("="*50)
+    
+    # Create different types of models
+    models_created = {}
+    
+    try:
+        # Create image classifier
+        cnn_model = orchestrator.create_deep_learning_model(
+            'image_classifier', 
+            input_shape=(64, 64, 3), 
+            num_classes=10,
+            model_name='demo_cnn'
+        )
+        models_created['CNN'] = 'Image Classifier'
+        print("✅ CNN Image Classifier created")
+    except Exception as e:
+        print(f"❌ CNN creation failed: {str(e)}")
+    
+    try:
+        # Create text classifier
+        lstm_model = orchestrator.create_deep_learning_model(
+            'text_classifier',
+            vocab_size=1000,
+            embedding_dim=100,
+            max_length=50,
+            num_classes=5,
+            model_name='demo_lstm'
+        )
+        models_created['LSTM'] = 'Text Classifier'
+        print("✅ LSTM Text Classifier created")
+    except Exception as e:
+        print(f"❌ LSTM creation failed: {str(e)}")
+    
+    try:
+        # Create GAN components
+        generator = orchestrator.create_deep_learning_model(
+            'gan_generator',
+            latent_dim=100,
+            model_name='demo_generator'
+        )
+        
+        discriminator = orchestrator.create_deep_learning_model(
+            'gan_discriminator',
+            model_name='demo_discriminator'
+        )
+        models_created['GAN'] = 'Generator & Discriminator'
+        print("✅ GAN components created")
+    except Exception as e:
+        print(f"❌ GAN creation failed: {str(e)}")
+    
+    print(f"\n📊 Models Created: {len(models_created)}")
+    for model_type, description in models_created.items():
+        print(f"  {model_type}: {description}")
+
+
+def demo_machine_learning(orchestrator: AIOrchestrator):
+    """Demonstrate machine learning capabilities."""
+    print("\n" + "="*50)
+    print("⚙️ MACHINE LEARNING DEMO")
+    print("="*50)
+    
+    # Generate sample data
+    from sklearn.datasets import make_classification, make_regression
+    import numpy as np
+    
+    # Classification data
+    X_class, y_class = make_classification(n_samples=1000, n_features=20, n_classes=3, random_state=42)
+    
+    # Regression data
+    X_reg, y_reg = make_regression(n_samples=1000, n_features=15, n_targets=1, random_state=42)
+    
+    print("📊 Generated sample datasets:")
+    print(f"  Classification: {X_class.shape}, {y_class.shape}")
+    print(f"  Regression: {X_reg.shape}, {y_reg.shape}")
+    
+    # Train classification models
+    print("\n🤖 Training classification models...")
+    class_results = orchestrator.train_sklearn_models(
+        X_class, y_class, 
+        ['random_forest', 'svm', 'logistic_regression', 'knn']
+    )
+    
+    print("Classification Results:")
+    for model_name, result in class_results.items():
+        if 'error' not in result:
+            print(f"  {model_name}: ✅ Trained successfully")
+        else:
+            print(f"  {model_name}: ❌ {result['error']}")
+    
+    # Train regression models
+    print("\n📈 Training regression models...")
+    reg_results = orchestrator.train_sklearn_models(
+        X_reg, y_reg,
+        ['random_forest', 'linear_regression', 'ridge', 'lasso']
+    )
+    
+    print("Regression Results:")
+    for model_name, result in reg_results.items():
+        if 'error' not in result:
+            print(f"  {model_name}: ✅ Trained successfully")
+        else:
+            print(f"  {model_name}: ❌ {result['error']}")
+
+
+def demo_integrated_workflow(orchestrator: AIOrchestrator):
+    """Demonstrate integrated AI workflow."""
+    print("\n" + "="*50)
+    print("🔄 INTEGRATED AI WORKFLOW DEMO")
+    print("="*50)
+    
+    # Test different types of requests
+    test_requests = [
+        "I need help with my account login issue",
+        "Generate a monthly sales report",
+        "Summarize the latest customer feedback",
+        "Show me some gesture recognition",
+        "Analyze the quarterly performance data"
+    ]
+    
+    print("🚀 Processing integrated requests:")
+    for i, request in enumerate(test_requests, 1):
+        print(f"\n{i}. Request: {request}")
+        result = orchestrator.run_complete_ai_workflow(request)
+        
+        if 'error' in result:
+            print(f"   ❌ Error: {result['error']}")
+        else:
+            print(f"   ✅ Workflow: {result.get('workflow_type', 'unknown')}")
+            if 'jarvis_response' in result:
+                print(f"   🤖 JARVIS: {result['jarvis_response'][:100]}...")
+            if 'status' in result:
+                print(f"   📊 Status: {result['status']}")
+
+
+def demo_email_processing_legacy(components: dict):
     """Demonstrate email processing capabilities."""
     print("\n" + "="*50)
     print("📧 EMAIL PROCESSING DEMO")
@@ -157,7 +362,7 @@ def demo_email_processing(components: dict):
     print(f"  Response: {result.get('response', 'N/A')[:200]}...")
 
 
-def demo_report_generation(components: dict):
+def demo_report_generation_legacy(components: dict):
     """Demonstrate report generation capabilities."""
     print("\n" + "="*50)
     print("📊 REPORT GENERATION DEMO")
@@ -217,7 +422,7 @@ def demo_report_generation(components: dict):
     print(f"  Change Rate: {trend_result.get('change_rate', 0):.1f}%")
 
 
-def demo_summarization(components: dict):
+def demo_summarization_legacy(components: dict):
     """Demonstrate text summarization capabilities."""
     print("\n" + "="*50)
     print("📝 TEXT SUMMARIZATION DEMO")
@@ -254,7 +459,7 @@ def demo_summarization(components: dict):
         print(f"  Key Points: {len(result.get('key_points', []))} items")
 
 
-def demo_customer_support(components: dict):
+def demo_customer_support_legacy(components: dict):
     """Demonstrate customer support workflow."""
     print("\n" + "="*50)
     print("🎧 CUSTOMER SUPPORT WORKFLOW DEMO")
@@ -288,7 +493,7 @@ def demo_customer_support(components: dict):
     print(f"  Similar Tickets: {len(result.get('similar_tickets', []))} found")
 
 
-def demo_automated_reporting(components: dict):
+def demo_automated_reporting_legacy(components: dict):
     """Demonstrate automated reporting workflow."""
     print("\n" + "="*50)
     print("📈 AUTOMATED REPORTING WORKFLOW DEMO")
@@ -310,7 +515,100 @@ def demo_automated_reporting(components: dict):
     print(f"  Summary: {result.get('summary', 'N/A')[:200]}...")
 
 
-def run_demo(components: dict, demo_type: str = 'all'):
+def demo_summarization_legacy(components: dict):
+    """Demonstrate text summarization capabilities."""
+    print("\n" + "="*50)
+    print("📝 TEXT SUMMARIZATION DEMO")
+    print("="*50)
+    
+    summarizer = components['summarizer']
+    
+    test_text = '''
+    Artificial Intelligence (AI) has become an integral part of modern business operations, 
+    transforming industries across the globe. Companies are increasingly adopting AI technologies 
+    to automate repetitive tasks, analyze vast amounts of data, and provide personalized 
+    customer experiences. Machine learning algorithms are being used to predict customer behavior, 
+    optimize supply chains, and detect fraudulent activities. Natural Language Processing (NLP) 
+    enables businesses to analyze customer feedback, automate customer support, and generate 
+    content at scale. Computer vision is revolutionizing quality control, security monitoring, 
+    and inventory management. Despite these advancements, organizations face challenges including 
+    data privacy concerns, the need for skilled AI professionals, and the ethical implications 
+    of automated decision-making. Successful AI implementation requires careful planning, 
+    robust data infrastructure, and a clear understanding of business objectives.
+    '''
+    
+    print(f"Original text length: {len(test_text)} characters")
+    
+    # Generate different types of summaries
+    summary_types = ['brief', 'executive', 'detailed']
+    
+    for summary_type in summary_types:
+        print(f"\n📋 {summary_type.title()} Summary:")
+        result = summarizer.summarize_text(test_text, summary_type)
+        
+        print(f"  Length: {result.get('summary_length', 0)} words")
+        print(f"  Compression: {result.get('compression_ratio', 0):.2f}x")
+        print(f"  Summary: {result.get('summary', 'N/A')}")
+        print(f"  Key Points: {len(result.get('key_points', []))} items")
+
+
+def demo_customer_support_legacy(components: dict):
+    """Demonstrate customer support workflow."""
+    print("\n" + "="*50)
+    print("🎧 CUSTOMER SUPPORT WORKFLOW DEMO")
+    print("="*50)
+    
+    support_workflow = components['support_workflow']
+    
+    test_ticket = {
+        'customer_email': 'john.doe@company.com',
+        'subject': 'Critical System Issue - Production Down',
+        'message': '''
+        Our production system has been down for the past 2 hours. We're getting error code 500 
+        when trying to access the main dashboard. This is affecting our entire team and we 
+        have critical deadlines to meet. We need immediate assistance as this is causing 
+        significant business impact. Please escalate this to your senior technical team.
+        ''',
+        'priority': 'critical'
+    }
+    
+    print(f"Processing ticket from {test_ticket['customer_email']}")
+    print(f"Priority: {test_ticket['priority']}")
+    print(f"Subject: {test_ticket['subject']}")
+    
+    result = support_workflow.process_incoming_ticket(test_ticket)
+    
+    print(f"\n🎫 Ticket Results:")
+    print(f"  Ticket ID: {result.get('ticket_id', 'N/A')}")
+    print(f"  Status: {result.get('status', 'N/A')}")
+    print(f"  Escalation Needed: {'✅' if result.get('escalation_needed') else '❌'}")
+    print(f"  Auto Response: {result.get('auto_response', 'N/A')[:200]}...")
+    print(f"  Similar Tickets: {len(result.get('similar_tickets', []))} found")
+
+
+def demo_automated_reporting_legacy(components: dict):
+    """Demonstrate automated reporting workflow."""
+    print("\n" + "="*50)
+    print("📈 AUTOMATED REPORTING WORKFLOW DEMO")
+    print("="*50)
+    
+    reporting_workflow = components['reporting_workflow']
+    
+    data_sources = ['sales_database', 'crm_system', 'support_tickets']
+    recipients = ['manager@company.com', 'team@company.com']
+    
+    print(f"Running daily report for {len(data_sources)} data sources...")
+    
+    result = reporting_workflow.run_daily_report(data_sources, recipients)
+    
+    print(f"\n📊 Workflow Results:")
+    print(f"  Status: {result.get('status', 'N/A')}")
+    print(f"  Report ID: {result.get('report_id', 'N/A')}")
+    print(f"  Recipients: {len(result.get('recipients', []))}")
+    print(f"  Summary: {result.get('summary', 'N/A')[:200]}...")
+
+
+def run_demo(components, demo_type: str = 'all'):
     """Run selected demo or all demos."""
     demos = {
         'email': demo_email_processing,
@@ -322,13 +620,53 @@ def run_demo(components: dict, demo_type: str = 'all'):
     
     if demo_type == 'all':
         print("🚀 Running all demos...")
-        for demo_name, demo_func in demos.items():
-            demo_func(components)
-    elif demo_type in demos:
-        demos[demo_type](components)
+        
+        # Check if using new orchestrator or legacy components
+        if isinstance(components, AIOrchestrator):
+            # New integrated demos
+            demo_jarvis_assistant(components)
+            demo_gesture_recognition(components)
+            demo_deep_learning(components)
+            demo_machine_learning(components)
+            demo_integrated_workflow(components)
+        else:
+            # Legacy demos
+            demo_email_processing_legacy(components)
+            demo_report_generation_legacy(components)
+            demo_summarization_legacy(components)
+            demo_customer_support_legacy(components)
+            demo_automated_reporting_legacy(components)
+            
+    elif isinstance(components, AIOrchestrator):
+        # New orchestrator demos
+        new_demos = {
+            'jarvis': demo_jarvis_assistant,
+            'gesture': demo_gesture_recognition,
+            'deeplearning': demo_deep_learning,
+            'ml': demo_machine_learning,
+            'integrated': demo_integrated_workflow
+        }
+        
+        if demo_type in new_demos:
+            new_demos[demo_type](components)
+        else:
+            print(f"Unknown demo: {demo_type}")
+            print(f"Available demos: {', '.join(list(new_demos.keys()) + ['all'])}")
     else:
-        print(f"Unknown demo: {demo_type}")
-        print(f"Available demos: {', '.join(demos.keys())}")
+        # Legacy demos
+        legacy_demos = {
+            'email': demo_email_processing_legacy,
+            'report': demo_report_generation_legacy,
+            'summarize': demo_summarization_legacy,
+            'support': demo_customer_support_legacy,
+            'workflow': demo_automated_reporting_legacy
+        }
+        
+        if demo_type in legacy_demos:
+            legacy_demos[demo_type](components)
+        else:
+            print(f"Unknown demo: {demo_type}")
+            print(f"Available demos: {', '.join(list(legacy_demos.keys()) + ['all'])}")
 
 
 def start_api_server(config: dict):
@@ -354,8 +692,11 @@ def main():
     """Main application entry point."""
     parser = argparse.ArgumentParser(description='AI Automation Workflows')
     parser.add_argument('--config', default='config/config.yaml', help='Configuration file path')
-    parser.add_argument('--demo', choices=['all', 'email', 'report', 'summarize', 'support', 'workflow'], 
+    parser.add_argument('--demo', 
+                       choices=['all', 'email', 'report', 'summarize', 'support', 'workflow', 
+                               'jarvis', 'gesture', 'deeplearning', 'ml', 'integrated'], 
                        default='all', help='Demo to run')
+    parser.add_argument('--legacy', action='store_true', help='Use legacy component initialization')
     parser.add_argument('--api', action='store_true', help='Start API server')
     parser.add_argument('--test', action='store_true', help='Run tests')
     
@@ -377,12 +718,29 @@ def main():
     logger.info("Application starting")
     
     # Initialize components
-    components = initialize_components(config)
+    if args.legacy:
+        print("Using legacy component initialization...")
+        components = initialize_legacy_components(config)
+    else:
+        print("Using new AI Orchestrator...")
+        components = initialize_components(config)
+        
     if not components:
         print("❌ Failed to initialize components")
         return
     
     print("✅ All components initialized successfully")
+    
+    # Show system status if using orchestrator
+    if isinstance(components, AIOrchestrator):
+        status = components.get_system_status()
+        print("\n📊 System Status:")
+        print(f"  Orchestrator: {'✅' if status['orchestrator']['initialized'] else '❌'}")
+        print(f"  LLM Client: {'✅' if status['llm_client']['connected'] else '❌'}")
+        print(f"  Agents: {len(status['agents'])} loaded")
+        print(f"  Workflows: {len(status['workflows'])} loaded")
+        print(f"  AI Components: {len(status['ai_components'])} loaded")
+        print(f"  ML Components: {len(status['ml_components'])} loaded")
     
     try:
         if args.test:
@@ -410,12 +768,28 @@ def main():
             print("  • Visit http://localhost:8000/docs for API documentation")
             print("  • Check notebooks/experimentation.ipynb for more examples")
             print("  • Review config/config.yaml for customization options")
+            if args.legacy:
+                print("  • Use without --legacy to try the new AI Orchestrator")
+            else:
+                print("  • Try specific demos: --demo jarvis, --demo gesture, --demo deeplearning")
+                print("  • Use --legacy for the original component structure")
     
     except KeyboardInterrupt:
         print("\n👋 Application stopped by user")
+        
+        # Shutdown orchestrator if used
+        if isinstance(components, AIOrchestrator):
+            components.shutdown()
     except Exception as e:
         logger.error(f"Application error: {str(e)}")
         print(f"❌ Error: {str(e)}")
+        
+        # Shutdown orchestrator on error
+        if isinstance(components, AIOrchestrator):
+            try:
+                components.shutdown()
+            except:
+                pass
     
     logger.info("Application finished")
 

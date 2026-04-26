@@ -8,9 +8,9 @@ from datetime import datetime, timedelta
 import json
 import uuid
 
-from ..agents.email_agent import EmailAgent
-from ..agents.summarizer import SummarizerAgent
-from ..utils.llm_client import LLMClient
+from src.agents.email_agent import EmailAgent
+from src.agents.summarizer import SummarizerAgent
+from src.utils.llm_client import LLMClient
 
 
 class CustomerSupportWorkflow:

@@ -6,8 +6,8 @@ import logging
 from typing import Dict, List, Optional
 from datetime import datetime
 
-from ..utils.llm_client import LLMClient
-from ..utils.prompt_templates import EMAIL_RESPONSE_TEMPLATE, EMAIL_SUMMARY_TEMPLATE
+from src.utils.llm_client import LLMClient
+from src.utils.prompt_templates import EMAIL_RESPONSE_TEMPLATE, EMAIL_SUMMARY_TEMPLATE
 
 
 class EmailAgent:
