@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🚀 AI Automation Workflows Dashboard
+AI Automation Workflows Dashboard
 Interactive web dashboard for monitoring and controlling all AI components.
 """
 
@@ -20,8 +20,8 @@ from src.integration.ai_orchestrator import AIOrchestrator
 
 # Page configuration
 st.set_page_config(
-    page_title="🚀 AI Automation Dashboard",
-    page_icon="🤖",
+    page_title="AI Automation Dashboard",
+    page_icon="settings",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -138,7 +138,7 @@ def create_enterprise_dashboard():
 
     fig.update_layout(
         height=800,
-        title_text="🏢 Enterprise Performance Dashboard",
+        title_text="Enterprise Performance Dashboard",
         showlegend=False
     )
 
@@ -147,56 +147,56 @@ def create_enterprise_dashboard():
 def main():
     """Main dashboard application."""
     # Header
-    st.markdown('<h1 class="main-header">🚀 AI Automation Dashboard</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">AI Automation Dashboard</h1>', unsafe_allow_html=True)
     
     # Initialize orchestrator
     orchestrator = initialize_orchestrator()
     
     # Sidebar
     with st.sidebar:
-        st.header("⚙️ Control Panel")
+        st.header("Control Panel")
         
         # System Status
-        st.subheader("📊 System Status")
-        if st.button("🔄 Refresh Status", key="refresh_status"):
+        st.subheader("System Status")
+        if st.button("Refresh Status", key="refresh_status"):
             if hasattr(orchestrator, 'get_system_status'):
                 st.session_state.system_status = orchestrator.get_system_status()
             else:
                 st.session_state.system_status = {"error": "Orchestrator not fully initialized"}
         
         # Initialize Components
-        if st.button("🚀 Initialize Components", key="init_components"):
+        if st.button("Initialize Components", key="init_components"):
             with st.spinner("Initializing components..."):
                 try:
                     if orchestrator.initialize_all():
-                        st.success("✅ All components initialized successfully!")
+                        st.success("All components initialized successfully!")
                         st.session_state.system_status = orchestrator.get_system_status()
                     else:
-                        st.error("❌ Failed to initialize components")
+                        st.error("Failed to initialize components")
                 except Exception as e:
-                    st.error(f"❌ Initialization error: {str(e)}")
+                    st.error(f"Initialization error: {str(e)}")
         
         st.divider()
         
         # Quick Actions
-        st.subheader("⚡ Quick Actions")
+        st.subheader("Quick Actions")
         
-        if st.button("🤖 Test JARVIS", key="test_jarvis"):
+        if st.button("Test JARVIS", key="test_jarvis"):
             st.session_state.test_jarvis = True
         
-        if st.button("👋 Test Gesture", key="test_gesture"):
+        if st.button("Test Gesture", key="test_gesture"):
             st.session_state.test_gesture = True
             
-        if st.button("🧠 Train ML Model", key="train_ml"):
+        if st.button("Train ML Model", key="train_ml"):
             st.session_state.train_ml = True
             
-        if st.button("📊 Analyze Data", key="analyze_data"):
+        if st.button("Analyze Data", key="analyze_data"):
             st.session_state.analyze_data = True
         
         st.divider()
         
         # Configuration
-        st.subheader("🔧 Configuration")
+        st.subheader("Configuration")
         
         # LLM Provider
         llm_provider = st.selectbox(
@@ -207,29 +207,29 @@ def main():
         )
         
         # Voice Settings
-        st.subheader("🎤 Voice Settings")
+        st.subheader("Voice Settings")
         voice_rate = st.slider("Speech Rate", 100, 300, 200, key="voice_rate")
         voice_volume = st.slider("Volume", 0.0, 1.0, 0.9, key="voice_volume")
         
         # Camera Settings
-        st.subheader("📷 Camera Settings")
+        st.subheader("Camera Settings")
         camera_device = st.number_input("Camera Device", 0, 10, 0, key="camera_device")
         
         st.divider()
         
         # Logs
-        st.subheader("📝 Logs")
-        if st.button("📋 View Logs", key="view_logs"):
+        st.subheader("Logs")
+        if st.button("View Logs", key="view_logs"):
             st.session_state.show_logs = True
 
     # Main content area
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "📊 Dashboard", "🤖 JARVIS", "🧠 ML Models", 
-        "📊 Data Analysis", "⚙️ Settings"
+        "Dashboard", "JARVIS", "ML Models", 
+        "Data Analysis", "Settings"
     ])
 
     with tab1:
-        st.header("📊 System Dashboard")
+        st.header("System Dashboard")
         
         # System Status Overview
         if 'system_status' in st.session_state:
@@ -241,29 +241,29 @@ def main():
             with col1:
                 orchestrator_status = status.get('orchestrator', {}).get('initialized', False)
                 st.metric(
-                    "🤖 Orchestrator",
+                    "Orchestrator",
                     "Active" if orchestrator_status else "Inactive",
-                    None if orchestrator_status else "❌"
+                    None if orchestrator_status else "ERROR"
                 )
             
             with col2:
                 llm_status = status.get('llm_client', {}).get('connected', False)
                 st.metric(
-                    "🧠 LLM Client",
+                    "LLM Client",
                     "Connected" if llm_status else "Disconnected",
-                    None if llm_status else "❌"
+                    None if llm_status else "ERROR"
                 )
             
             with col3:
                 agents_count = len(status.get('agents', {}))
-                st.metric("🤡 Agents", f"{agents_count} Loaded")
+                st.metric("Agents", f"{agents_count} Loaded")
             
             with col4:
                 workflows_count = len(status.get('workflows', {}))
-                st.metric("🔄 Workflows", f"{workflows_count} Loaded")
+                st.metric("Workflows", f"{workflows_count} Loaded")
         
         # Performance Metrics
-        st.subheader("📈 Performance Metrics")
+        st.subheader("Performance Metrics")
         
         # Sample performance data
         metrics_data = {
@@ -287,7 +287,7 @@ def main():
             ))
         
         fig.update_layout(
-            title="⚡ Response Time (seconds)",
+            title="Response Time (seconds)",
             xaxis_title="Test Run",
             yaxis_title="Time (seconds)",
             height=400,
@@ -297,12 +297,12 @@ def main():
         st.plotly_chart(fig, use_container_width=True)
         
         # Enterprise Performance Dashboard
-        st.subheader("🏢 Enterprise Performance Dashboard")
+        st.subheader("Enterprise Performance Dashboard")
         enterprise_fig = create_enterprise_dashboard()
         st.plotly_chart(enterprise_fig, use_container_width=True)
         
         # Activity Log
-        st.subheader("📝 Recent Activity")
+        st.subheader("Recent Activity")
         
         # Sample activity data
         activity_data = [
@@ -316,7 +316,7 @@ def main():
         activity_df = pd.DataFrame(activity_data)
         
         for _, row in activity_df.iterrows():
-            status_icon = "✅" if row['status'] == 'success' else "❌"
+            status_icon = "SUCCESS" if row['status'] == 'success' else "ERROR"
             st.markdown(f"""
             <div style="padding: 0.5rem; margin-bottom: 0.5rem; border-left: 3px solid #28a745; background: #f8f9fa;">
                 <strong>{row['timestamp'].strftime('%H:%M:%S')}</strong> - {row['component']}<br>
@@ -325,30 +325,30 @@ def main():
             """, unsafe_allow_html=True)
 
     with tab2:
-        st.header("🤖 JARVIS Assistant")
+        st.header("JARVIS Assistant")
         
         col1, col2 = st.columns(2)
         
         with col1:
-            st.subheader("🎤 Voice Commands")
+            st.subheader("Voice Commands")
             
             # Command input
             command = st.text_input("Enter voice command:", placeholder="e.g., 'Analyze sales data'")
             
-            if st.button("🗣️ Process Command", key="process_command"):
+            if st.button("Process Command", key="process_command"):
                 if command and hasattr(orchestrator, 'process_voice_command'):
                     with st.spinner("Processing command..."):
                         try:
                             response = orchestrator.process_voice_command(command)
-                            st.success("✅ Command processed successfully!")
+                            st.success("Command processed successfully!")
                             st.write(f"**JARVIS Response:** {response}")
                         except Exception as e:
-                            st.error(f"❌ Error processing command: {str(e)}")
+                            st.error(f"Error processing command: {str(e)}")
                 else:
-                    st.warning("⚠️ JARVIS not available")
+                    st.warning("JARVIS not available")
             
             # Command history
-            st.subheader("📜 Command History")
+            st.subheader("Command History")
             if 'command_history' not in st.session_state:
                 st.session_state.command_history = []
             
@@ -356,23 +356,23 @@ def main():
                 st.write(f"• {cmd}")
         
         with col2:
-            st.subheader("👋 Gesture Control")
+            st.subheader("Gesture Control")
             
             # Gesture status
             if hasattr(orchestrator, 'detect_gesture'):
-                if st.button("📷 Detect Gesture", key="detect_gesture"):
+                if st.button("Detect Gesture", key="detect_gesture"):
                     with st.spinner("Detecting gesture..."):
                         try:
                             gesture = orchestrator.detect_gesture()
                             if gesture:
-                                st.success(f"✅ Gesture detected: **{gesture}**")
+                                st.success(f"Gesture detected: **{gesture}**")
                             else:
-                                st.info("ℹ️ No gesture detected")
+                                st.info("No gesture detected")
                         except Exception as e:
-                            st.error(f"❌ Error detecting gesture: {str(e)}")
+                            st.error(f"Error detecting gesture: {str(e)}")
                 
                 # Gesture statistics
-                st.subheader("📊 Gesture Statistics")
+                st.subheader("Gesture Statistics")
                 
                 gesture_stats = {
                     'Thumbs Up': 15,
@@ -393,15 +393,15 @@ def main():
                 )
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.warning("⚠️ Gesture detection not available")
+                st.warning("Gesture detection not available")
 
     with tab3:
-        st.header("🧠 Machine Learning Models")
+        st.header("Machine Learning Models")
         
         col1, col2 = st.columns(2)
         
         with col1:
-            st.subheader("🤖 Model Training")
+            st.subheader("Model Training")
             
             # Model type selection
             model_type = st.selectbox(
@@ -419,17 +419,17 @@ def main():
             )
             
             # Training parameters
-            st.subheader("⚙️ Training Parameters")
+            st.subheader("Training Parameters")
             
             test_size = st.slider("Test Size", 0.1, 0.5, 0.2, key="test_size")
             cv_folds = st.slider("CV Folds", 3, 10, 5, key="cv_folds")
             
-            if st.button("🚀 Start Training", key="start_training"):
-                st.success("✅ Training started! (Demo mode)")
-                st.info("📊 In production, this would train models with your data")
+            if st.button("Start Training", key="start_training"):
+                st.success("Training started! (Demo mode)")
+                st.info("In production, this would train models with your data")
         
         with col2:
-            st.subheader("📊 Model Performance")
+            st.subheader("Model Performance")
             
             # Sample model performance data
             performance_data = {
@@ -460,7 +460,7 @@ def main():
             ))
             
             fig.update_layout(
-                title="📈 Model Performance Comparison",
+                title="Model Performance Comparison",
                 xaxis_title="Model",
                 yaxis_title="Score",
                 barmode='group',
@@ -470,20 +470,20 @@ def main():
             st.plotly_chart(fig, use_container_width=True)
             
             # Performance table
-            st.subheader("📋 Performance Details")
+            st.subheader("Performance Details")
             st.dataframe(perf_df, use_container_width=True)
 
     with tab4:
-        st.header("📊 Data Analysis")
+        st.header("Data Analysis")
         
         col1, col2 = st.columns(2)
         
         with col1:
-            st.subheader("📈 Data Upload & Analysis")
+            st.subheader("Data Upload & Analysis")
             
             # File upload
             uploaded_file = st.file_uploader(
-                "📁 Upload CSV file for analysis",
+                "Upload CSV file for analysis",
                 type=['csv'],
                 key="data_upload"
             )
@@ -491,11 +491,11 @@ def main():
             if uploaded_file:
                 try:
                     data = pd.read_csv(uploaded_file)
-                    st.success(f"✅ File loaded: {uploaded_file.name}")
-                    st.info(f"📊 Dataset shape: {data.shape}")
+                    st.success(f"File loaded: {uploaded_file.name}")
+                    st.info(f"Dataset shape: {data.shape}")
                     
                     # Basic statistics
-                    st.subheader("📋 Data Statistics")
+                    st.subheader("Data Statistics")
                     st.write(data.describe())
                     
                     # Analysis options
@@ -505,14 +505,14 @@ def main():
                         key="analysis_type"
                     )
                     
-                    if st.button("🔍 Analyze Data", key="analyze_uploaded"):
-                        st.success("✅ Analysis completed! (Demo mode)")
+                    if st.button("Analyze Data", key="analyze_uploaded"):
+                        st.success("Analysis completed! (Demo mode)")
                         
                 except Exception as e:
-                    st.error(f"❌ Error loading file: {str(e)}")
+                    st.error(f"Error loading file: {str(e)}")
             
             # Sample data generation
-            st.subheader("🎲 Generate Sample Data")
+            st.subheader("Generate Sample Data")
             
             sample_type = st.selectbox(
                 "Sample Data Type",
@@ -528,12 +528,12 @@ def main():
                 key="n_samples"
             )
             
-            if st.button("🎲 Generate Data", key="generate_sample"):
-                st.success(f"✅ Generated {n_samples} samples for {sample_type}!")
-                st.info("📊 Sample data ready for analysis")
+            if st.button("Generate Data", key="generate_sample"):
+                st.success(f"Generated {n_samples} samples for {sample_type}!")
+                st.info("Sample data ready for analysis")
         
         with col2:
-            st.subheader("📊 Visualizations")
+            st.subheader("Visualizations")
             
             # Visualization type
             viz_type = st.selectbox(
@@ -542,48 +542,48 @@ def main():
                 key="viz_type"
             )
             
-            if st.button("📊 Create Visualization", key="create_viz"):
+            if st.button("Create Visualization", key="create_viz"):
                 # Sample visualization
                 if viz_type == "Line Chart":
                     fig = px.line(
                         x=list(range(100)),
                         y=[i*2 + (i%10) for i in range(100)],
-                        title="📈 Sample Time Series"
+                        title="Sample Time Series"
                     )
                 elif viz_type == "Bar Chart":
                     fig = px.bar(
                         x=['A', 'B', 'C', 'D', 'E'],
                         y=[20, 35, 30, 35, 27],
-                        title="📊 Sample Bar Chart"
+                        title="Sample Bar Chart"
                     )
                 elif viz_type == "Scatter Plot":
                     fig = px.scatter(
                         x=[i + (i%5) for i in range(50)],
                         y=[i*1.5 + (i%7) for i in range(50)],
-                        title="🔵 Sample Scatter Plot"
+                        title="Sample Scatter Plot"
                     )
                 elif viz_type == "Heatmap":
                     import numpy as np
                     data = np.random.randn(10, 10)
                     fig = px.imshow(
                         data,
-                        title="🔥 Sample Heatmap"
+                        title="Sample Heatmap"
                     )
                 else:  # Histogram
                     fig = px.histogram(
                         x=[i + (i%3) for i in range(100)],
-                        title="📊 Sample Histogram"
+                        title="Sample Histogram"
                     )
                 
                 st.plotly_chart(fig, use_container_width=True)
 
     with tab5:
-        st.header("⚙️ System Settings")
+        st.header("System Settings")
         
         col1, col2 = st.columns(2)
         
         with col1:
-            st.subheader("🔧 Configuration")
+            st.subheader("Configuration")
             
             # Current config display
             config = load_config()
@@ -592,12 +592,12 @@ def main():
             st.json(config)
             
             # Configuration reload
-            if st.button("🔄 Reload Configuration", key="reload_config"):
-                st.success("✅ Configuration reloaded!")
+            if st.button("Reload Configuration", key="reload_config"):
+                st.success("Configuration reloaded!")
                 st.rerun()
         
         with col2:
-            st.subheader("📝 System Logs")
+            st.subheader("System Logs")
             
             # Log level selection
             log_level = st.selectbox(
@@ -635,8 +635,8 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style='text-align: center; color: #666; padding: 1rem;'>
-        🚀 <strong>AI Automation Workflows Dashboard</strong> | 
-        Built with ❤️ using Streamlit | 
+        <strong>AI Automation Workflows Dashboard</strong> | 
+        Built with Streamlit | 
         <a href='https://github.com/Vaishnavidorlikar/ai-automation-workflows-llm' target='_blank'>GitHub</a>
     </div>
     """, unsafe_allow_html=True)

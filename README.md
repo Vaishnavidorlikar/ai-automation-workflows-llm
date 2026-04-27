@@ -1,61 +1,61 @@
-# 🚀 AI Automation Workflows with JARVIS-like Assistant
+# AI Automation Workflows with JARVIS-like Assistant
 
 A comprehensive Python project for building AI-powered automation workflows using Large Language Models (LLMs), computer vision, deep learning, and advanced data science. This project features a **JARVIS-like AI assistant** with voice interaction, hand gesture recognition, and complete machine learning capabilities.
 
-## 🚀 Features
+## Features
 
-### 🤖 JARVIS-like AI Assistant
+### JARVIS-like AI Assistant
 - **Voice Interaction**: Speech recognition and text-to-speech capabilities
 - **Natural Language Processing**: Advanced conversational AI with AIML
 - **Multi-modal Interface**: Voice commands + gesture recognition
 - **Intelligent Responses**: Context-aware conversation system
 
-### 👋 Hand Gesture Recognition
+### Hand Gesture Recognition
 - **Real-time Detection**: Live camera-based gesture recognition
 - **Computer Vision**: MediaPipe integration for accurate hand tracking
 - **Multiple Gestures**: Thumbs up, peace, rock, paper, scissors, OK, point, etc.
 - **Deep Learning**: Trainable gesture classification models
 
-### 🧠 Deep Learning Models (TensorFlow/Keras)
+### Deep Learning Models (TensorFlow/Keras)
 - **CNN Models**: Image classification and computer vision
 - **RNN/LSTM**: Text processing and sequence analysis
 - **Autoencoders**: Dimensionality reduction and feature learning
 - **GANs**: Generative models for data synthesis
 - **Transfer Learning**: Pre-trained model fine-tuning
 
-### 📊 Data Analysis & Visualization
+### Data Analysis & Visualization
 - **NumPy/Pandas**: Advanced data manipulation and analysis
 - **Statistical Analysis**: Comprehensive descriptive and inferential statistics
 - **Matplotlib/Seaborn**: Professional data visualization
 - **Interactive Plots**: Plotly and Bokeh for web-based visualizations
 - **Automated Insights**: AI-powered data pattern detection
 
-### ⚙️ Machine Learning (Scikit-learn)
+### Machine Learning (Scikit-learn)
 - **Classification**: Random Forest, SVM, Logistic Regression, KNN, Naive Bayes
 - **Regression**: Linear, Ridge, Lasso, Random Forest, SVR
 - **Clustering**: K-Means, DBSCAN, Hierarchical clustering
 - **Feature Engineering**: Selection, extraction, and preprocessing
 - **Model Evaluation**: Cross-validation, hyperparameter tuning, performance metrics
 
-### 💬 Conversational AI (AIML)
+### Conversational AI (AIML)
 - **Pattern Matching**: Rule-based conversation system
 - **Dynamic Responses**: Context-aware answer generation
 - **Knowledge Base**: Extensible pattern-response database
 - **Learning Capability**: Interaction-based improvement
 
-### 🔄 Automated Workflows
+### Automated Workflows
 - **Reporting Workflow**: Automated daily, weekly, and custom report generation
 - **Customer Support Workflow**: Complete ticket processing system with escalation
 - **Data Pipeline**: End-to-end automated data processing
 - **Multi-agent Coordination**: Coordinated AI agent workflows
 
-### 🛠️ Core Utilities
+### Core Utilities
 - **LLM Client**: Multi-provider support (OpenAI, Anthropic, Mock for testing)
 - **Prompt Templates**: 20+ reusable templates for consistent LLM interactions
 - **FastAPI REST API**: Complete API endpoints for all functionality
 - **Configuration Management**: YAML-based configuration with environment variables
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ai-automation-workflows-llm/
@@ -109,7 +109,7 @@ ai-automation-workflows-llm/
 └── main.py                     # Main application entry point
 ```
 
-## 🛠️ Installation
+## Installation
 
 ### Prerequisites
 - Python 3.8 or higher
@@ -119,24 +119,24 @@ ai-automation-workflows-llm/
 
 ### Setup Steps
 
-1. **Clone the repository**
+1. Clone repository
    ```bash
    git clone https://github.com/Vaishnavidorlikar/ai-automation-workflows-llm.git
    cd ai-automation-workflows-llm
    ```
 
-2. **Create virtual environment**
+2. Create virtual environment
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. **Install dependencies**
+3. Install dependencies
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Set up environment variables**
+4. Set up environment variables
    ```bash
    # For OpenAI
    export OPENAI_API_KEY="your-openai-api-key"
@@ -145,7 +145,7 @@ ai-automation-workflows-llm/
    export ANTHROPIC_API_KEY="your-anthropic-api-key"
    ```
 
-5. **Create necessary directories**
+5. Create necessary directories
    ```bash
    mkdir -p data/reports data/tickets logs models/gestures data/voice
    ```
@@ -162,9 +162,9 @@ ai-automation-workflows-llm/
    sudo apt-get install v4l-utils
    ```
 
-## 🚀 Quick Start
+## Quick Start
 
-### 🎯 Integrated AI/ML Demo (Recommended)
+### Integrated AI/ML Demo (Recommended)
 
 Run the comprehensive demo that showcases all features:
 
@@ -173,14 +173,14 @@ python integrated_demo.py
 ```
 
 This interactive demo includes:
-- 🗣️ JARVIS voice assistant
-- 👋 Hand gesture recognition  
-- 🧠 Deep learning models
-- 📊 Data analysis & visualization
-- 💬 Conversational AI
-- ⚙️ Machine learning models
-- 🔄 Integrated workflows
-- 📈 Performance comparisons
+- JARVIS voice assistant
+- Hand gesture recognition  
+- Deep learning models
+- Data analysis & visualization
+- Conversational AI
+- Machine learning models
+- Integrated workflows
+- Performance comparisons
 
 ### Using the Main Application
 
@@ -211,7 +211,7 @@ The API will be available at `http://localhost:8000` with interactive documentat
 jupyter notebook notebooks/experimentation.ipynb
 ```
 
-## 📖 Usage Examples
+## Usage Examples
 
 ### Email Processing
 
@@ -270,7 +270,7 @@ print(f"Ticket ID: {result['ticket_id']}")
 print(f"Auto Response: {result['auto_response']}")
 ```
 
-### 🗣️ JARVIS Voice Assistant
+### JARVIS Voice Assistant
 
 ```python
 from src.jarvis import JARVISAssistant
@@ -293,7 +293,7 @@ status = jarvis.get_status()
 print(f"Status: {status}")
 ```
 
-### 👋 Hand Gesture Recognition
+### Hand Gesture Recognition
 
 ```python
 from src.gesture_recognition import GestureDetector
@@ -314,7 +314,7 @@ print(f"Detected gesture: {gesture}")
 detector.train_gesture_model('data/gestures/', 'models/gesture_model.h5')
 ```
 
-### 🧠 Deep Learning Models
+### Deep Learning Models
 
 ```python
 from src.deep_learning import ModelManager
@@ -337,7 +337,7 @@ generator = manager.create_gan_generator(latent_dim=100)
 discriminator = manager.create_gan_discriminator()
 ```
 
-### 📊 Data Analysis & Visualization
+### Data Analysis & Visualization
 
 ```python
 from src.data_analysis import DataAnalyzer
@@ -366,7 +366,7 @@ print(f"Best model accuracy: {ml_results['Random Forest']['accuracy']:.3f}")
 pca_results = analyzer.perform_pca('sales_data', n_components=2)
 ```
 
-### ⚙️ Machine Learning (Scikit-learn)
+### Machine Learning (Scikit-learn)
 
 ```python
 from src.ml_models import SklearnManager
@@ -405,7 +405,7 @@ selection_results = ml_manager.feature_selection(
 clustering_results = ml_manager.perform_clustering(pd.DataFrame(X))
 ```
 
-### 💬 Conversational AI (AIML)
+### Conversational AI (AIML)
 
 ```python
 from src.aiml import AIMLProcessor
@@ -429,7 +429,7 @@ aiml.save_patterns('custom_patterns.aiml')
 aiml.export_patterns_json('patterns.json')
 ```
 
-### 🔄 Integrated Workflow Example
+### Integrated Workflow Example
 
 ```python
 # Complete AI workflow combining all technologies
@@ -464,7 +464,7 @@ insights = {
 jarvis.speak(f"I analyzed {df.shape[0]} customers and built a prediction model with {ml_results['Random Forest']['accuracy']:.1%} accuracy.")
 ```
 
-## 🔧 Configuration
+## Configuration
 
 The project uses `config/config.yaml` for configuration. Key settings include:
 
@@ -492,7 +492,7 @@ Or use pytest:
 pytest tests/ -v
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 The FastAPI application provides comprehensive REST endpoints:
 
@@ -520,7 +520,7 @@ The FastAPI application provides comprehensive REST endpoints:
 
 Visit `http://localhost:8000/docs` for interactive API documentation.
 
-## 🏗️ Architecture
+## Architecture
 
 ### Component Overview
 
@@ -537,7 +537,7 @@ Visit `http://localhost:8000/docs` for interactive API documentation.
 - **Observer Pattern**: Workflow monitoring and logging
 - **Template Method**: Consistent prompt generation
 
-## 🔒 Security Considerations
+## Security Considerations
 
 - API key management through environment variables
 - Input validation and sanitization
@@ -545,7 +545,7 @@ Visit `http://localhost:8000/docs` for interactive API documentation.
 - CORS configuration
 - Error handling without information leakage
 
-## 🚀 Deployment
+## Deployment
 
 ### Docker Deployment
 
@@ -570,7 +570,7 @@ CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]
 - Configure database persistence for production data
 - Implement proper backup strategies
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -578,11 +578,11 @@ CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🆘 Support
+## Support
 
 For questions and support:
 
@@ -590,7 +590,7 @@ For questions and support:
 2. Create a new issue with detailed information
 3. Review the documentation and examples
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Add more LLM providers (Google Gemini, Cohere)
 - [ ] Implement advanced workflow orchestration
@@ -601,7 +601,7 @@ For questions and support:
 - [ ] Add A/B testing for prompt optimization
 - [ ] Implement multi-language support
 
-## 📊 Performance
+## Performance
 
 - **Email Processing**: ~1-2 seconds per email
 - **Report Generation**: ~3-5 seconds for standard reports
@@ -612,4 +612,4 @@ For questions and support:
 
 ---
 
-**Built with ❤️ using Python, FastAPI, and modern LLM technologies**
+**Built using Python, FastAPI, and modern LLM technologies**

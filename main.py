@@ -79,17 +79,17 @@ def load_config(config_path: str = 'config/config.yaml') -> dict:
 
 def initialize_components(config: dict):
     """Initialize all components with given configuration."""
-    print("🚀 Initializing AI Orchestrator with all components...")
+    print("Initializing AI Orchestrator with all components...")
     
     # Initialize the unified orchestrator
     orchestrator = AIOrchestrator(config)
     
     # Initialize all components
     if orchestrator.initialize_all():
-        print("✅ All components initialized successfully")
+        print("SUCCESS: All components initialized successfully")
         return orchestrator
     else:
-        print("❌ Failed to initialize components")
+        print("ERROR: Failed to initialize components")
         return None
 
 # Legacy initialization function for backward compatibility
@@ -107,9 +107,9 @@ def initialize_legacy_components(config: dict):
     
     # Test connection
     if llm_client.test_connection():
-        print("✅ LLM client connection successful")
+        print("SUCCESS: LLM client connection successful")
     else:
-        print("❌ LLM client connection failed")
+        print("ERROR: LLM client connection failed")
         return None
     
     # Initialize agents
@@ -151,7 +151,7 @@ def demo_jarvis_assistant(orchestrator: AIOrchestrator):
         "Thank you JARVIS"
     ]
     
-    print("\n🎤 Testing voice commands:")
+    print("\nTesting voice commands:")
     for command in test_commands:
         response = orchestrator.process_voice_command(command)
         print(f"  Command: {command}")
@@ -162,7 +162,7 @@ def demo_jarvis_assistant(orchestrator: AIOrchestrator):
 def demo_gesture_recognition(orchestrator: AIOrchestrator):
     """Demonstrate gesture recognition capabilities."""
     print("\n" + "="*50)
-    print("👋 GESTURE RECOGNITION DEMO")
+    print("GESTURE RECOGNITION DEMO")
     print("="*50)
     
     print("Starting gesture recognition...")
@@ -201,9 +201,9 @@ def demo_deep_learning(orchestrator: AIOrchestrator):
             model_name='demo_cnn'
         )
         models_created['CNN'] = 'Image Classifier'
-        print("✅ CNN Image Classifier created")
+        print("SUCCESS: CNN Image Classifier created")
     except Exception as e:
-        print(f"❌ CNN creation failed: {str(e)}")
+        print(f"ERROR: CNN creation failed: {str(e)}")
     
     try:
         # Create text classifier
@@ -216,9 +216,9 @@ def demo_deep_learning(orchestrator: AIOrchestrator):
             model_name='demo_lstm'
         )
         models_created['LSTM'] = 'Text Classifier'
-        print("✅ LSTM Text Classifier created")
+        print("SUCCESS: LSTM Text Classifier created")
     except Exception as e:
-        print(f"❌ LSTM creation failed: {str(e)}")
+        print(f"ERROR: LSTM creation failed: {str(e)}")
     
     try:
         # Create GAN components
@@ -233,11 +233,11 @@ def demo_deep_learning(orchestrator: AIOrchestrator):
             model_name='demo_discriminator'
         )
         models_created['GAN'] = 'Generator & Discriminator'
-        print("✅ GAN components created")
+        print("SUCCESS: GAN components created")
     except Exception as e:
-        print(f"❌ GAN creation failed: {str(e)}")
+        print(f"ERROR: GAN creation failed: {str(e)}")
     
-    print(f"\n📊 Models Created: {len(models_created)}")
+    print(f"\nModels Created: {len(models_created)}")
     for model_type, description in models_created.items():
         print(f"  {model_type}: {description}")
 
@@ -245,7 +245,7 @@ def demo_deep_learning(orchestrator: AIOrchestrator):
 def demo_machine_learning(orchestrator: AIOrchestrator):
     """Demonstrate machine learning capabilities."""
     print("\n" + "="*50)
-    print("⚙️ MACHINE LEARNING DEMO")
+    print("MACHINE LEARNING DEMO")
     print("="*50)
     
     # Generate sample data
@@ -258,12 +258,12 @@ def demo_machine_learning(orchestrator: AIOrchestrator):
     # Regression data
     X_reg, y_reg = make_regression(n_samples=1000, n_features=15, n_targets=1, random_state=42)
     
-    print("📊 Generated sample datasets:")
+    print("Generated sample datasets:")
     print(f"  Classification: {X_class.shape}, {y_class.shape}")
     print(f"  Regression: {X_reg.shape}, {y_reg.shape}")
     
     # Train classification models
-    print("\n🤖 Training classification models...")
+    print("\nTraining classification models...")
     class_results = orchestrator.train_sklearn_models(
         X_class, y_class, 
         ['random_forest', 'svm', 'logistic_regression', 'knn']
@@ -272,12 +272,12 @@ def demo_machine_learning(orchestrator: AIOrchestrator):
     print("Classification Results:")
     for model_name, result in class_results.items():
         if 'error' not in result:
-            print(f"  {model_name}: ✅ Trained successfully")
+            print(f"  {model_name}: Trained successfully")
         else:
-            print(f"  {model_name}: ❌ {result['error']}")
+            print(f"  {model_name}: ERROR: {result['error']}")
     
     # Train regression models
-    print("\n📈 Training regression models...")
+    print("\nTraining regression models...")
     reg_results = orchestrator.train_sklearn_models(
         X_reg, y_reg,
         ['random_forest', 'linear_regression', 'ridge', 'lasso']
@@ -286,15 +286,15 @@ def demo_machine_learning(orchestrator: AIOrchestrator):
     print("Regression Results:")
     for model_name, result in reg_results.items():
         if 'error' not in result:
-            print(f"  {model_name}: ✅ Trained successfully")
+            print(f"  {model_name}: Trained successfully")
         else:
-            print(f"  {model_name}: ❌ {result['error']}")
+            print(f"  {model_name}: ERROR: {result['error']}")
 
 
 def demo_integrated_workflow(orchestrator: AIOrchestrator):
     """Demonstrate integrated AI workflow."""
     print("\n" + "="*50)
-    print("🔄 INTEGRATED AI WORKFLOW DEMO")
+    print("INTEGRATED AI WORKFLOW DEMO")
     print("="*50)
     
     # Test different types of requests
@@ -306,25 +306,25 @@ def demo_integrated_workflow(orchestrator: AIOrchestrator):
         "Analyze the quarterly performance data"
     ]
     
-    print("🚀 Processing integrated requests:")
+    print("Processing integrated requests:")
     for i, request in enumerate(test_requests, 1):
         print(f"\n{i}. Request: {request}")
         result = orchestrator.run_complete_ai_workflow(request)
         
         if 'error' in result:
-            print(f"   ❌ Error: {result['error']}")
+            print(f"   ERROR: {result['error']}")
         else:
-            print(f"   ✅ Workflow: {result.get('workflow_type', 'unknown')}")
+            print(f"   Workflow: {result.get('workflow_type', 'unknown')}")
             if 'jarvis_response' in result:
-                print(f"   🤖 JARVIS: {result['jarvis_response'][:100]}...")
+                print(f"   JARVIS: {result['jarvis_response'][:100]}...")
             if 'status' in result:
-                print(f"   📊 Status: {result['status']}")
+                print(f"   Status: {result['status']}")
 
 
 def demo_email_processing_legacy(components: dict):
     """Demonstrate email processing capabilities."""
     print("\n" + "="*50)
-    print("📧 EMAIL PROCESSING DEMO")
+    print("EMAIL PROCESSING DEMO")
     print("="*50)
     
     email_agent = components['email_agent']
@@ -355,9 +355,9 @@ def demo_email_processing_legacy(components: dict):
         test_email['subject']
     )
     
-    print(f"\n📊 Results:")
+    print(f"\nResults:")
     print(f"  Category: {result.get('category', 'N/A')}")
-    print(f"  Processed: {'✅' if result.get('processed') else '❌'}")
+    print(f"  Processed: {'Yes' if result.get('processed') else 'No'}")
     print(f"  Summary: {result.get('summary', 'N/A')}")
     print(f"  Response: {result.get('response', 'N/A')[:200]}...")
 
@@ -365,7 +365,7 @@ def demo_email_processing_legacy(components: dict):
 def demo_report_generation_legacy(components: dict):
     """Demonstrate report generation capabilities."""
     print("\n" + "="*50)
-    print("📊 REPORT GENERATION DEMO")
+    print("REPORT GENERATION DEMO")
     print("="*50)
     
     report_agent = components['report_agent']
@@ -401,14 +401,14 @@ def demo_report_generation_legacy(components: dict):
         'Monthly Performance Report'
     )
     
-    print(f"\n📊 Results:")
+    print(f"\nResults:")
     print(f"  Title: {result.get('title', 'N/A')}")
     print(f"  Status: {result.get('status', 'N/A')}")
     print(f"  Executive Summary: {result.get('executive_summary', 'N/A')[:200]}...")
     print(f"  Recommendations: {len(result.get('recommendations', []))} items")
     
     # Show trend analysis
-    print("\n📈 Trend Analysis:")
+    print("\nTrend Analysis:")
     historical_data = [
         {'timestamp': '2024-01-01', 'revenue': 45000, 'customers': 120},
         {'timestamp': '2024-02-01', 'revenue': 52000, 'customers': 145},
@@ -425,7 +425,7 @@ def demo_report_generation_legacy(components: dict):
 def demo_summarization_legacy(components: dict):
     """Demonstrate text summarization capabilities."""
     print("\n" + "="*50)
-    print("📝 TEXT SUMMARIZATION DEMO")
+    print("TEXT SUMMARIZATION DEMO")
     print("="*50)
     
     summarizer = components['summarizer']
@@ -450,7 +450,7 @@ def demo_summarization_legacy(components: dict):
     summary_types = ['brief', 'executive', 'detailed']
     
     for summary_type in summary_types:
-        print(f"\n📋 {summary_type.title()} Summary:")
+        print(f"\n{summary_type.title()} Summary:")
         result = summarizer.summarize_text(test_text, summary_type)
         
         print(f"  Length: {result.get('summary_length', 0)} words")
@@ -462,7 +462,7 @@ def demo_summarization_legacy(components: dict):
 def demo_customer_support_legacy(components: dict):
     """Demonstrate customer support workflow."""
     print("\n" + "="*50)
-    print("🎧 CUSTOMER SUPPORT WORKFLOW DEMO")
+    print("CUSTOMER SUPPORT WORKFLOW DEMO")
     print("="*50)
     
     support_workflow = components['support_workflow']
@@ -485,10 +485,10 @@ def demo_customer_support_legacy(components: dict):
     
     result = support_workflow.process_incoming_ticket(test_ticket)
     
-    print(f"\n🎫 Ticket Results:")
+    print(f"\nTicket Results:")
     print(f"  Ticket ID: {result.get('ticket_id', 'N/A')}")
     print(f"  Status: {result.get('status', 'N/A')}")
-    print(f"  Escalation Needed: {'✅' if result.get('escalation_needed') else '❌'}")
+    print(f"  Escalation Needed: {'Yes' if result.get('escalation_needed') else 'No'}")
     print(f"  Auto Response: {result.get('auto_response', 'N/A')[:200]}...")
     print(f"  Similar Tickets: {len(result.get('similar_tickets', []))} found")
 
@@ -496,7 +496,7 @@ def demo_customer_support_legacy(components: dict):
 def demo_automated_reporting_legacy(components: dict):
     """Demonstrate automated reporting workflow."""
     print("\n" + "="*50)
-    print("📈 AUTOMATED REPORTING WORKFLOW DEMO")
+    print("AUTOMATED REPORTING WORKFLOW DEMO")
     print("="*50)
     
     reporting_workflow = components['reporting_workflow']
@@ -508,7 +508,7 @@ def demo_automated_reporting_legacy(components: dict):
     
     result = reporting_workflow.run_daily_report(data_sources, recipients)
     
-    print(f"\n📊 Workflow Results:")
+    print(f"\nWorkflow Results:")
     print(f"  Status: {result.get('status', 'N/A')}")
     print(f"  Report ID: {result.get('report_id', 'N/A')}")
     print(f"  Recipients: {len(result.get('recipients', []))}")
@@ -518,7 +518,7 @@ def demo_automated_reporting_legacy(components: dict):
 def demo_summarization_legacy(components: dict):
     """Demonstrate text summarization capabilities."""
     print("\n" + "="*50)
-    print("📝 TEXT SUMMARIZATION DEMO")
+    print("TEXT SUMMARIZATION DEMO")
     print("="*50)
     
     summarizer = components['summarizer']
@@ -543,7 +543,7 @@ def demo_summarization_legacy(components: dict):
     summary_types = ['brief', 'executive', 'detailed']
     
     for summary_type in summary_types:
-        print(f"\n📋 {summary_type.title()} Summary:")
+        print(f"\n{summary_type.title()} Summary:")
         result = summarizer.summarize_text(test_text, summary_type)
         
         print(f"  Length: {result.get('summary_length', 0)} words")
@@ -555,7 +555,7 @@ def demo_summarization_legacy(components: dict):
 def demo_customer_support_legacy(components: dict):
     """Demonstrate customer support workflow."""
     print("\n" + "="*50)
-    print("🎧 CUSTOMER SUPPORT WORKFLOW DEMO")
+    print("CUSTOMER SUPPORT WORKFLOW DEMO")
     print("="*50)
     
     support_workflow = components['support_workflow']
@@ -578,10 +578,10 @@ def demo_customer_support_legacy(components: dict):
     
     result = support_workflow.process_incoming_ticket(test_ticket)
     
-    print(f"\n🎫 Ticket Results:")
+    print(f"\nTicket Results:")
     print(f"  Ticket ID: {result.get('ticket_id', 'N/A')}")
     print(f"  Status: {result.get('status', 'N/A')}")
-    print(f"  Escalation Needed: {'✅' if result.get('escalation_needed') else '❌'}")
+    print(f"  Escalation Needed: {'Yes' if result.get('escalation_needed') else 'No'}")
     print(f"  Auto Response: {result.get('auto_response', 'N/A')[:200]}...")
     print(f"  Similar Tickets: {len(result.get('similar_tickets', []))} found")
 
@@ -589,7 +589,7 @@ def demo_customer_support_legacy(components: dict):
 def demo_automated_reporting_legacy(components: dict):
     """Demonstrate automated reporting workflow."""
     print("\n" + "="*50)
-    print("📈 AUTOMATED REPORTING WORKFLOW DEMO")
+    print("AUTOMATED REPORTING WORKFLOW DEMO")
     print("="*50)
     
     reporting_workflow = components['reporting_workflow']
@@ -601,7 +601,7 @@ def demo_automated_reporting_legacy(components: dict):
     
     result = reporting_workflow.run_daily_report(data_sources, recipients)
     
-    print(f"\n📊 Workflow Results:")
+    print(f"\nWorkflow Results:")
     print(f"  Status: {result.get('status', 'N/A')}")
     print(f"  Report ID: {result.get('report_id', 'N/A')}")
     print(f"  Recipients: {len(result.get('recipients', []))}")
@@ -619,7 +619,7 @@ def run_demo(components, demo_type: str = 'all'):
     }
     
     if demo_type == 'all':
-        print("🚀 Running all demos...")
+        print("Running all demos...")
         
         # Check if using new orchestrator or legacy components
         if isinstance(components, AIOrchestrator):
@@ -671,7 +671,7 @@ def run_demo(components, demo_type: str = 'all'):
 
 def start_api_server(config: dict):
     """Start the FastAPI server."""
-    print("\n🌐 Starting API Server...")
+    print("\nStarting API Server...")
     print("API will be available at: http://localhost:8000")
     print("Interactive docs at: http://localhost:8000/docs")
     
@@ -702,14 +702,14 @@ def main():
     
     args = parser.parse_args()
     
-    print("🤖 AI Automation Workflows")
+    print("AI Automation Workflows")
     print("=" * 50)
     
     # Load configuration
     print("Loading configuration...")
     config = load_config(args.config)
     if not config:
-        print("❌ Failed to load configuration")
+        print("ERROR: Failed to load configuration")
         return
     
     # Setup logging
@@ -726,17 +726,17 @@ def main():
         components = initialize_components(config)
         
     if not components:
-        print("❌ Failed to initialize components")
+        print("ERROR: Failed to initialize components")
         return
     
-    print("✅ All components initialized successfully")
+    print("SUCCESS: All components initialized successfully")
     
     # Show system status if using orchestrator
     if isinstance(components, AIOrchestrator):
         status = components.get_system_status()
-        print("\n📊 System Status:")
-        print(f"  Orchestrator: {'✅' if status['orchestrator']['initialized'] else '❌'}")
-        print(f"  LLM Client: {'✅' if status['llm_client']['connected'] else '❌'}")
+        print("\nSystem Status:")
+        print(f"  Orchestrator: {'Yes' if status['orchestrator']['initialized'] else 'No'}")
+        print(f"  LLM Client: {'Yes' if status['llm_client']['connected'] else 'No'}")
         print(f"  Agents: {len(status['agents'])} loaded")
         print(f"  Workflows: {len(status['workflows'])} loaded")
         print(f"  AI Components: {len(status['ai_components'])} loaded")
@@ -745,7 +745,7 @@ def main():
     try:
         if args.test:
             # Run tests
-            print("\n🧪 Running tests...")
+            print("\nRunning tests...")
             import subprocess
             result = subprocess.run([sys.executable, 'tests/test_agents.py'], 
                                   capture_output=True, text=True)
@@ -762,7 +762,7 @@ def main():
             run_demo(components, args.demo)
             
             print("\n" + "="*50)
-            print("✅ Demo completed successfully!")
+            print("SUCCESS: Demo completed successfully!")
             print("\nNext steps:")
             print("  • Run with --api to start the REST API server")
             print("  • Visit http://localhost:8000/docs for API documentation")
@@ -775,14 +775,14 @@ def main():
                 print("  • Use --legacy for the original component structure")
     
     except KeyboardInterrupt:
-        print("\n👋 Application stopped by user")
+        print("\nApplication stopped by user")
         
         # Shutdown orchestrator if used
         if isinstance(components, AIOrchestrator):
             components.shutdown()
     except Exception as e:
         logger.error(f"Application error: {str(e)}")
-        print(f"❌ Error: {str(e)}")
+        print(f"ERROR: Error: {str(e)}")
         
         # Shutdown orchestrator on error
         if isinstance(components, AIOrchestrator):

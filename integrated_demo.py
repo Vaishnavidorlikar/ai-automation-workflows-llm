@@ -23,44 +23,44 @@ sys.path.append(str(Path(__file__).parent / 'src'))
 try:
     from jarvis.jarvis_assistant import JARVISAssistant
 except ImportError:
-    print("⚠️  JARVIS assistant not available - installing missing dependencies...")
+    print("WARNING: JARVIS assistant not available - installing missing dependencies...")
     JARVISAssistant = None
 
 try:
     from gesture_recognition.gesture_detector import GestureDetector
 except ImportError:
-    print("⚠️  Gesture detection not available - installing missing dependencies...")
+    print("WARNING: Gesture detection not available - installing missing dependencies...")
     GestureDetector = None
 
 try:
     from deep_learning.model_manager import ModelManager
 except ImportError:
-    print("⚠️  Deep learning models not available - installing missing dependencies...")
+    print("WARNING: Deep learning models not available - installing missing dependencies...")
     ModelManager = None
 
 try:
     from data_analysis.data_analyzer import DataAnalyzer
 except ImportError:
-    print("⚠️  Data analysis not available - installing missing dependencies...")
+    print("WARNING: Data analysis not available - installing missing dependencies...")
     DataAnalyzer = None
 
 try:
     from aiml.aiml_processor import AIMLProcessor
 except ImportError:
-    print("⚠️  AIML processor not available - installing missing dependencies...")
+    print("WARNING: AIML processor not available - installing missing dependencies...")
     AIMLProcessor = None
 
 try:
     from ml_models.sklearn_manager import SklearnManager
 except ImportError:
-    print("⚠️  Scikit-learn manager not available - installing missing dependencies...")
+    print("WARNING: Scikit-learn manager not available - installing missing dependencies...")
     SklearnManager = None
 
 # Import sklearn datasets for demo
 try:
     from sklearn.datasets import make_classification
 except ImportError:
-    print("⚠️  Scikit-learn datasets not available...")
+    print("WARNING: Scikit-learn datasets not available...")
     make_classification = None
 
 
@@ -97,13 +97,13 @@ class IntegratedAIDemo:
                 print("Initializing JARVIS Assistant...")
                 self.jarvis = JARVISAssistant()
                 components_initialized += 1
-                print("✅ JARVIS Assistant initialized!")
+                print("SUCCESS: JARVIS Assistant initialized!")
             except Exception as e:
                 self.logger.error(f"Error initializing JARVIS: {str(e)}")
-                print(f"❌ JARVIS Assistant error: {str(e)}")
+                print(f"ERROR: JARVIS Assistant error: {str(e)}")
                 self.jarvis = None
         else:
-            print("⚠️  JARVIS Assistant not available")
+            print("WARNING: JARVIS Assistant not available")
             self.jarvis = None
         
         # Gesture Detector
@@ -112,13 +112,13 @@ class IntegratedAIDemo:
                 print("Initializing Gesture Recognition...")
                 self.gesture_detector = GestureDetector()
                 components_initialized += 1
-                print("✅ Gesture Recognition initialized!")
+                print("SUCCESS: Gesture Recognition initialized!")
             except Exception as e:
                 self.logger.error(f"Error initializing Gesture Detector: {str(e)}")
-                print(f"❌ Gesture Recognition error: {str(e)}")
+                print(f"ERROR: Gesture Recognition error: {str(e)}")
                 self.gesture_detector = None
         else:
-            print("⚠️  Gesture Recognition not available")
+            print("WARNING: Gesture Recognition not available")
             self.gesture_detector = None
         
         # Deep Learning Model Manager
@@ -127,13 +127,13 @@ class IntegratedAIDemo:
                 print("Initializing Deep Learning Models...")
                 self.model_manager = ModelManager()
                 components_initialized += 1
-                print("✅ Deep Learning Models initialized!")
+                print("SUCCESS: Deep Learning Models initialized!")
             except Exception as e:
                 self.logger.error(f"Error initializing Model Manager: {str(e)}")
-                print(f"❌ Deep Learning Models error: {str(e)}")
+                print(f"ERROR: Deep Learning Models error: {str(e)}")
                 self.model_manager = None
         else:
-            print("⚠️  Deep Learning Models not available")
+            print("WARNING: Deep Learning Models not available")
             self.model_manager = None
         
         # Data Analyzer
@@ -142,13 +142,13 @@ class IntegratedAIDemo:
                 print("Initializing Data Analysis Tools...")
                 self.data_analyzer = DataAnalyzer()
                 components_initialized += 1
-                print("✅ Data Analysis Tools initialized!")
+                print("SUCCESS: Data Analysis Tools initialized!")
             except Exception as e:
                 self.logger.error(f"Error initializing Data Analyzer: {str(e)}")
-                print(f"❌ Data Analysis Tools error: {str(e)}")
+                print(f"ERROR: Data Analysis Tools error: {str(e)}")
                 self.data_analyzer = None
         else:
-            print("⚠️  Data Analysis Tools not available")
+            print("WARNING: Data Analysis Tools not available")
             self.data_analyzer = None
         
         # AIML Processor
@@ -157,13 +157,13 @@ class IntegratedAIDemo:
                 print("Initializing Conversational AI...")
                 self.aiml_processor = AIMLProcessor()
                 components_initialized += 1
-                print("✅ Conversational AI initialized!")
+                print("SUCCESS: Conversational AI initialized!")
             except Exception as e:
                 self.logger.error(f"Error initializing AIML Processor: {str(e)}")
-                print(f"❌ Conversational AI error: {str(e)}")
+                print(f"ERROR: Conversational AI error: {str(e)}")
                 self.aiml_processor = None
         else:
-            print("⚠️  Conversational AI not available")
+            print("WARNING: Conversational AI not available")
             self.aiml_processor = None
         
         # Scikit-learn Manager
@@ -172,45 +172,45 @@ class IntegratedAIDemo:
                 print("Initializing Machine Learning Models...")
                 self.sklearn_manager = SklearnManager()
                 components_initialized += 1
-                print("✅ Machine Learning Models initialized!")
+                print("SUCCESS: Machine Learning Models initialized!")
             except Exception as e:
                 self.logger.error(f"Error initializing Sklearn Manager: {str(e)}")
-                print(f"❌ Machine Learning Models error: {str(e)}")
+                print(f"ERROR: Machine Learning Models error: {str(e)}")
                 self.sklearn_manager = None
         else:
-            print("⚠️  Machine Learning Models not available")
+            print("WARNING: Machine Learning Models not available")
             self.sklearn_manager = None
         
-        print(f"\n📊 Initialization Summary: {components_initialized}/6 components initialized")
+        print(f"\nInitialization Summary: {components_initialized}/6 components initialized")
         
         if components_initialized == 0:
-            print("❌ No components could be initialized. Please install required dependencies.")
-            print("💡 Run: pip install -r requirements.txt")
+            print("ERROR: No components could be initialized. Please install required dependencies.")
+            print("INFO: Run: pip install -r requirements.txt")
         elif components_initialized < 6:
-            print("⚠️  Some components are missing. Demo functionality may be limited.")
+            print("WARNING: Some components are missing. Demo functionality may be limited.")
         else:
-            print("✅ All components initialized successfully!")
+            print("SUCCESS: All components initialized successfully!")
     
     def show_menu(self):
         """Display the main menu."""
         print("\n" + "=" * 60)
-        print("🚀 INTEGRATED AI/ML DEMO - MAIN MENU")
+        print("INTEGRATED AI/ML DEMO - MAIN MENU")
         print("=" * 60)
-        print("1. 🗣️  JARVIS Voice Assistant Demo")
-        print("2. 👋 Hand Gesture Recognition Demo")
-        print("3. 🧠 Deep Learning Models Demo")
-        print("4. 📊 Data Analysis & Visualization Demo")
-        print("5. 💬 Conversational AI (AIML) Demo")
-        print("6. ⚙️  Machine Learning Models Demo")
-        print("7. 🔄 Integrated Workflow Demo")
-        print("8. 📈 Performance Comparison Demo")
-        print("9. 🎯 Custom AI Task Demo")
-        print("0. 🚪 Exit")
+        print("1. JARVIS Voice Assistant Demo")
+        print("2. Hand Gesture Recognition Demo")
+        print("3. Deep Learning Models Demo")
+        print("4. Data Analysis & Visualization Demo")
+        print("5. Conversational AI (AIML) Demo")
+        print("6. Machine Learning Models Demo")
+        print("7. Integrated Workflow Demo")
+        print("8. Performance Comparison Demo")
+        print("9. Custom AI Task Demo")
+        print("0. Exit")
         print("=" * 60)
     
     def run_jarvis_demo(self):
         """Run JARVIS voice assistant demo."""
-        print("\n🗣️  JARVIS Voice Assistant Demo")
+        print("\nJARVIS Voice Assistant Demo")
         print("-" * 40)
         
         try:
@@ -227,19 +227,19 @@ class IntegratedAIDemo:
             ]
             
             for command in test_commands:
-                print(f"\n👤 User: {command}")
+                print(f"\nUser: {command}")
                 response = self.jarvis.process_command(command)
-                print(f"🤖 JARVIS: {response}")
+                print(f"JARVIS: {response}")
                 time.sleep(1)
             
-            print("\n✅ JARVIS demo completed!")
+            print("\nSUCCESS: JARVIS demo completed!")
             
         except Exception as e:
-            print(f"❌ JARVIS demo error: {str(e)}")
+            print(f"ERROR: JARVIS demo error: {str(e)}")
     
     def run_gesture_demo(self):
         """Run hand gesture recognition demo."""
-        print("\n👋 Hand Gesture Recognition Demo")
+        print("\nHand Gesture Recognition Demo")
         print("-" * 40)
         
         try:
@@ -251,11 +251,11 @@ class IntegratedAIDemo:
             self.gesture_detector.start_camera_detection("Gesture Recognition Demo")
             
         except Exception as e:
-            print(f"❌ Gesture demo error: {str(e)}")
+            print(f"ERROR: Gesture demo error: {str(e)}")
     
     def run_deep_learning_demo(self):
         """Run deep learning models demo."""
-        print("\n🧠 Deep Learning Models Demo")
+        print("\nDeep Learning Models Demo")
         print("-" * 40)
         
         try:
@@ -279,31 +279,31 @@ class IntegratedAIDemo:
                 if model_name == 'image_classifier':
                     input_shape, num_classes = model_config[1], model_config[2]
                     model = self.model_manager.create_image_classifier(input_shape, num_classes, model_name)
-                    print(f"✅ Created image classifier: {input_shape} -> {num_classes} classes")
+                    print(f"SUCCESS: Created image classifier: {input_shape} -> {num_classes} classes")
                 
                 elif model_name == 'text_classifier':
                     vocab_size, max_length, num_classes = model_config[1], model_config[2], model_config[3]
                     model = self.model_manager.create_text_classifier(vocab_size, max_length, num_classes, model_name)
-                    print(f"✅ Created text classifier: vocab={vocab_size}, length={max_length}")
+                    print(f"SUCCESS: Created text classifier: vocab={vocab_size}, length={max_length}")
                 
                 elif model_name == 'regression_model':
                     input_dim = model_config[1]
                     model = self.model_manager.create_regression_model(input_dim, model_name=model_name)
-                    print(f"✅ Created regression model: {input_dim} features")
+                    print(f"SUCCESS: Created regression model: {input_dim} features")
             
             # Train a model
             print("\nTraining a sample model...")
             sample_model = self.model_manager.create_regression_model(20, "demo_regression")
             history = self.model_manager.train_model(sample_model, X_train, y_train, X_val, y_val, epochs=5)
             
-            print(f"✅ Model trained! Final loss: {history['loss'][-1]:.4f}")
+            print(f"SUCCESS: Model trained! Final loss: {history['loss'][-1]:.4f}")
             
         except Exception as e:
-            print(f"❌ Deep learning demo error: {str(e)}")
+            print(f"ERROR: Deep learning demo error: {str(e)}")
     
     def run_data_analysis_demo(self):
         """Run data analysis and visualization demo."""
-        print("\n📊 Data Analysis & Visualization Demo")
+        print("\nData Analysis & Visualization Demo")
         print("-" * 40)
         
         try:
@@ -311,37 +311,37 @@ class IntegratedAIDemo:
             data_types = ['classification', 'regression', 'clustering', 'timeseries']
             
             for data_type in data_types:
-                print(f"\n📈 Generating {data_type} data...")
+                print(f"\nGenerating {data_type} data...")
                 df = self.data_analyzer.generate_sample_data(data_type, num_samples=500)
                 
                 # Analyze the data
-                print(f"🔍 Analyzing {data_type} data...")
+                print(f"Analyzing {data_type} data...")
                 analysis = self.data_analyzer.analyze_data(f"sample_{data_type}")
                 
                 # Create visualization
-                print(f"📊 Creating visualization for {data_type} data...")
+                print(f"Creating visualization for {data_type} data...")
                 plot_path = self.data_analyzer.create_visualization(f"sample_{data_type}")
                 
-                print(f"✅ {data_type.title()} analysis completed!")
+                print(f"SUCCESS: {data_type.title()} analysis completed!")
                 print(f"   Summary: {analysis['summary']}")
                 print(f"   Plot saved: {plot_path}")
             
             # Perform ML analysis
-            print("\n🤖 Performing machine learning analysis...")
+            print("\nPerforming machine learning analysis...")
             df_class = self.data_analyzer.generate_sample_data('classification')
             ml_results = self.data_analyzer.build_ml_model('sample_classification', 'target')
             
-            print(f"✅ ML analysis completed!")
+            print(f"SUCCESS: ML analysis completed!")
             for model_name, metrics in ml_results.items():
                 if 'accuracy' in metrics:
                     print(f"   {model_name}: Accuracy = {metrics['accuracy']:.3f}")
             
         except Exception as e:
-            print(f"❌ Data analysis demo error: {str(e)}")
+            print(f"ERROR: Data analysis demo error: {str(e)}")
     
     def run_aiml_demo(self):
         """Run conversational AI demo."""
-        print("\n💬 Conversational AI (AIML) Demo")
+        print("\nConversational AI (AIML) Demo")
         print("-" * 40)
         
         try:
@@ -360,31 +360,31 @@ class IntegratedAIDemo:
             print("Testing conversational patterns...")
             
             for user_input in test_inputs:
-                print(f"\n👤 User: {user_input}")
+                print(f"\nUser: {user_input}")
                 response = self.aiml_processor.respond(user_input)
-                print(f"🤖 JARVIS: {response}")
+                print(f"JARVIS: {response}")
                 time.sleep(0.5)
             
             # Show AIML statistics
             stats = self.aiml_processor.get_statistics()
-            print(f"\n📊 AIML Statistics:")
+            print(f"\nAIML Statistics:")
             print(f"   Total patterns: {stats['total_patterns']}")
             print(f"   Total responses: {stats['total_responses']}")
             print(f"   Variables: {stats['variables_count']}")
             
-            print("\n✅ AIML demo completed!")
+            print("\nSUCCESS: AIML demo completed!")
             
         except Exception as e:
-            print(f"❌ AIML demo error: {str(e)}")
+            print(f"ERROR: AIML demo error: {str(e)}")
     
     def run_sklearn_demo(self):
         """Run scikit-learn machine learning demo."""
-        print("\n⚙️  Machine Learning Models Demo")
+        print("\nMachine Learning Models Demo")
         print("-" * 40)
         
         try:
             # Generate sample data
-            print("📊 Generating sample dataset...")
+            print("Generating sample dataset...")
             X, y = make_classification(n_samples=1000, n_features=20, n_classes=3, random_state=42)
             
             # Prepare data
@@ -394,19 +394,19 @@ class IntegratedAIDemo:
             prepared_data = self.sklearn_manager.prepare_data(X_df, y_series)
             
             # Train classification models
-            print("\n🎯 Training classification models...")
+            print("\nTraining classification models...")
             classification_results = self.sklearn_manager.train_classification_models(
                 prepared_data['X_train'], prepared_data['y_train']
             )
             
             # Evaluate models
-            print("\n📈 Evaluating models...")
+            print("\nEvaluating models...")
             evaluation_results = self.sklearn_manager.evaluate_classification_models(
                 prepared_data['X_test'], prepared_data['y_test']
             )
             
             # Display results
-            print("\n🏆 Model Performance Results:")
+            print("\nModel Performance Results:")
             for model_name, metrics in evaluation_results.items():
                 if 'metrics' in metrics:
                     acc = metrics['metrics']['accuracy']
@@ -414,12 +414,12 @@ class IntegratedAIDemo:
                     print(f"   {model_name}: Accuracy={acc:.3f}, F1={f1:.3f}")
             
             # Create comparison plot
-            print("\n📊 Creating model comparison plot...")
+            print("\nCreating model comparison plot...")
             plot_path = self.sklearn_manager.create_model_comparison_plot(evaluation_results, 'accuracy')
             print(f"   Plot saved: {plot_path}")
             
             # Perform clustering
-            print("\n🔍 Performing clustering analysis...")
+            print("\nPerforming clustering analysis...")
             clustering_results = self.sklearn_manager.perform_clustering(X_df)
             
             for method, results in clustering_results.items():
@@ -428,20 +428,20 @@ class IntegratedAIDemo:
                     n_clusters = results['n_clusters']
                     print(f"   {method}: {n_clusters} clusters, Silhouette={score:.3f}")
             
-            print("\n✅ Scikit-learn demo completed!")
+            print("\nSUCCESS: Scikit-learn demo completed!")
             
         except Exception as e:
-            print(f"❌ Scikit-learn demo error: {str(e)}")
+            print(f"ERROR: Scikit-learn demo error: {str(e)}")
     
     def run_integrated_workflow_demo(self):
         """Run integrated workflow demo combining all technologies."""
-        print("\n🔄 Integrated Workflow Demo")
+        print("\nIntegrated Workflow Demo")
         print("-" * 40)
         print("This demo combines voice input, gesture recognition, data analysis, and ML!")
         
         try:
             # Step 1: Generate sample data
-            print("\n📊 Step 1: Generating complex dataset...")
+            print("\nStep 1: Generating complex dataset...")
             np.random.seed(42)
             
             # Create a complex dataset
@@ -461,10 +461,10 @@ class IntegratedAIDemo:
             # Store for analysis
             self.data_analyzer.datasets['customer_data'] = df
             
-            print(f"✅ Dataset created: {df.shape}")
+            print(f"SUCCESS: Dataset created: {df.shape}")
             
             # Step 2: Voice command to analyze data
-            print("\n🗣️  Step 2: Processing voice command...")
+            print("\nStep 2: Processing voice command...")
             command = "Analyze the customer data and create segments"
             print(f"Command: '{command}'")
             
@@ -472,15 +472,15 @@ class IntegratedAIDemo:
             print(f"JARVIS: {jarvis_response}")
             
             # Step 3: Data analysis
-            print("\n📈 Step 3: Performing comprehensive data analysis...")
+            print("\nStep 3: Performing comprehensive data analysis...")
             analysis = self.data_analyzer.analyze_data('customer_data')
             
             # Create visualizations
             viz_path = self.data_analyzer.create_visualization('customer_data', 'auto')
-            print(f"✅ Analysis completed! Visualization: {viz_path}")
+            print(f"SUCCESS: Analysis completed! Visualization: {viz_path}")
             
             # Step 4: Machine learning segmentation
-            print("\n🤖 Step 4: Building customer segmentation model...")
+            print("\nStep 4: Building customer segmentation model...")
             
             # Prepare data for clustering
             features = ['age', 'income', 'spending', 'satisfaction', 'loyalty_years']
@@ -489,7 +489,7 @@ class IntegratedAIDemo:
             clustering_results = self.sklearn_manager.perform_clustering(X_cluster, n_clusters=4)
             
             # Step 5: Predictive modeling
-            print("\n🎯 Step 5: Building satisfaction prediction model...")
+            print("\nStep 5: Building satisfaction prediction model...")
             
             # Create binary target (high satisfaction)
             df['high_satisfaction'] = (df['satisfaction'] > 0.7).astype(int)
@@ -507,7 +507,7 @@ class IntegratedAIDemo:
             )
             
             # Step 6: Deep learning model
-            print("\n🧠 Step 6: Creating deep learning model...")
+            print("\nStep 6: Creating deep learning model...")
             
             # Create and train a neural network
             dl_model = self.model_manager.create_regression_model(len(features), "satisfaction_predictor")
@@ -521,21 +521,21 @@ class IntegratedAIDemo:
             dl_history = self.model_manager.train_model(dl_model, X_train_dl, y_train_dl, X_val_dl, y_val_dl, epochs=10)
             
             # Step 7: Gesture-based interaction
-            print("\n👋 Step 7: Demonstrating gesture-based control...")
+            print("\nStep 7: Demonstrating gesture-based control...")
             print("Show a 'thumbs_up' gesture to continue, or 'peace' to skip...")
             
             # Simulate gesture detection
             time.sleep(2)
             detected_gesture = "thumbs_up"  # Simulated
-            print(f"👋 Gesture detected: {detected_gesture}")
+            print(f"Gesture detected: {detected_gesture}")
             
             if detected_gesture == "thumbs_up":
-                print("✅ Gesture confirmed! Continuing with analysis...")
+                print("SUCCESS: Gesture confirmed! Continuing with analysis...")
             else:
-                print("⏭️  Skipping detailed analysis...")
+                print("Skipping detailed analysis...")
             
             # Step 8: Generate comprehensive report
-            print("\n📋 Step 8: Generating comprehensive AI report...")
+            print("\nStep 8: Generating comprehensive AI report...")
             
             report = {
                 'dataset_info': {
@@ -563,30 +563,30 @@ class IntegratedAIDemo:
             with open(report_path, 'w') as f:
                 json.dump(report, f, indent=2, default=str)
             
-            print(f"✅ Comprehensive report saved: {report_path}")
+            print(f"SUCCESS: Comprehensive report saved: {report_path}")
             
             # Display summary
-            print("\n🎉 Integrated Workflow Summary:")
-            print(f"   📊 Dataset analyzed: {df.shape[0]} customers, {df.shape[1]} features")
-            print(f"   🔍 Clusters found: {len(clustering_results)} methods applied")
-            print(f"   🤖 ML models trained: {len(ml_results)} classification models")
-            print(f"   🧠 Deep learning model: {dl_history['loss'][-1]:.4f} final loss")
-            print(f"   👋 Gesture interaction: {detected_gesture}")
-            print(f"   📋 Report generated: {report_path}")
+            print("\nIntegrated Workflow Summary:")
+            print(f"   Dataset analyzed: {df.shape[0]} customers, {df.shape[1]} features")
+            print(f"   Clusters found: {len(clustering_results)} methods applied")
+            print(f"   ML models trained: {len(ml_results)} classification models")
+            print(f"   Deep learning model: {dl_history['loss'][-1]:.4f} final loss")
+            print(f"   Gesture interaction: {detected_gesture}")
+            print(f"   Report generated: {report_path}")
             
-            print("\n✅ Integrated workflow demo completed successfully!")
+            print("\nSUCCESS: Integrated workflow demo completed successfully!")
             
         except Exception as e:
-            print(f"❌ Integrated workflow demo error: {str(e)}")
+            print(f"ERROR: Integrated workflow demo error: {str(e)}")
     
     def run_performance_comparison_demo(self):
         """Run performance comparison between different approaches."""
-        print("\n📈 Performance Comparison Demo")
+        print("\nPerformance Comparison Demo")
         print("-" * 40)
         
         try:
             # Generate test data
-            print("📊 Generating test dataset...")
+            print("Generating test dataset...")
             X, y = make_classification(n_samples=2000, n_features=25, n_classes=4, random_state=42)
             
             # Test different approaches
@@ -599,21 +599,21 @@ class IntegratedAIDemo:
             results = {}
             
             for approach_name, test_func in approaches.items():
-                print(f"\n🧪 Testing {approach_name}...")
+                print(f"\nTesting {approach_name}...")
                 try:
                     result = test_func(X, y)
                     results[approach_name] = result
-                    print(f"✅ {approach_name}: Accuracy = {result['accuracy']:.3f}, Time = {result['time']:.2f}s")
+                    print(f"SUCCESS: {approach_name}: Accuracy = {result['accuracy']:.3f}, Time = {result['time']:.2f}s")
                 except Exception as e:
-                    print(f"❌ {approach_name} failed: {str(e)}")
+                    print(f"ERROR: {approach_name} failed: {str(e)}")
                     results[approach_name] = {'error': str(e)}
             
             # Create comparison visualization
-            print("\n📊 Creating performance comparison...")
+            print("\nCreating performance comparison...")
             self._create_performance_comparison_plot(results)
             
             # Display results
-            print("\n🏆 Performance Comparison Results:")
+            print("\nPerformance Comparison Results:")
             for approach, result in results.items():
                 if 'accuracy' in result:
                     print(f"   {approach}:")
@@ -621,10 +621,10 @@ class IntegratedAIDemo:
                     print(f"     Time: {result['time']:.2f}s")
                     print(f"     Memory: {result.get('memory', 'N/A')} MB")
             
-            print("\n✅ Performance comparison completed!")
+            print("\nSUCCESS: Performance comparison completed!")
             
         except Exception as e:
-            print(f"❌ Performance comparison demo error: {str(e)}")
+            print(f"ERROR: Performance comparison demo error: {str(e)}")
     
     def _test_traditional_ml(self, X, y):
         """Test traditional machine learning approach."""
@@ -771,17 +771,17 @@ class IntegratedAIDemo:
         plt.savefig('performance_comparison.png', dpi=300, bbox_inches='tight')
         plt.close()
         
-        print("📊 Performance comparison plot saved: performance_comparison.png")
+        print("Performance comparison plot saved: performance_comparison.png")
     
     def run_custom_ai_task_demo(self):
         """Run custom AI task demonstration."""
-        print("\n🎯 Custom AI Task Demo")
+        print("\nCustom AI Task Demo")
         print("-" * 40)
         print("This demo shows how to combine multiple AI technologies for a custom task.")
         
         try:
             # Custom task: Intelligent Data Analysis Assistant
-            print("🎯 Task: Create an Intelligent Data Analysis Assistant")
+            print("Task: Create an Intelligent Data Analysis Assistant")
             print("   - Uses voice commands for natural interaction")
             print("   - Performs automated data analysis")
             print("   - Generates insights and recommendations")
@@ -789,7 +789,7 @@ class IntegratedAIDemo:
             print("   - Responds to gesture controls")
             
             # Step 1: Create complex business dataset
-            print("\n📊 Step 1: Creating business analytics dataset...")
+            print("\nStep 1: Creating business analytics dataset...")
             
             np.random.seed(42)
             n_companies = 500
@@ -815,10 +815,10 @@ class IntegratedAIDemo:
             
             self.data_analyzer.datasets['business_analytics'] = df
             
-            print(f"✅ Business dataset created: {df.shape}")
+            print(f"SUCCESS: Business dataset created: {df.shape}")
             
             # Step 2: Voice-activated analysis
-            print("\n🗣️  Step 2: Voice-activated data analysis...")
+            print("\nStep 2: Voice-activated data analysis...")
             
             voice_commands = [
                 "Analyze the business performance data",
@@ -828,25 +828,25 @@ class IntegratedAIDemo:
             ]
             
             for command in voice_commands:
-                print(f"\n👤 Voice Command: '{command}'")
+                print(f"\nVoice Command: '{command}'")
                 
                 # Process with JARVIS
                 jarvis_response = self.jarvis.process_command(command)
-                print(f"🤖 JARVIS: {jarvis_response}")
+                print(f"JARVIS: {jarvis_response}")
                 
                 # Execute the actual analysis
                 if "analyze" in command.lower():
                     analysis = self.data_analyzer.analyze_data('business_analytics')
-                    print(f"📈 Analysis: {analysis['summary']}")
+                    print(f"Analysis: {analysis['summary']}")
                 
                 elif "top performing" in command.lower():
                     top_companies = df.nlargest(5, 'growth_rate')[['company_id', 'growth_rate', 'revenue']]
-                    print(f"🏆 Top 5 Companies by Growth:")
+                    print(f"Top 5 Companies by Growth:")
                     print(top_companies.to_string(index=False))
                 
                 elif "visualizations" in command.lower():
                     viz_path = self.data_analyzer.create_visualization('business_analytics', 'auto')
-                    print(f"📊 Visualization created: {viz_path}")
+                    print(f"Visualization created: {viz_path}")
                 
                 elif "predict" in command.lower():
                     # Build prediction model
@@ -864,13 +864,13 @@ class IntegratedAIDemo:
                     )
                     
                     best_model = max(eval_results.items(), key=lambda x: x[1].get('metrics', {}).get('accuracy', 0))
-                    print(f"🎯 Best prediction model: {best_model[0]}")
+                    print(f"Best prediction model: {best_model[0]}")
                     print(f"   Accuracy: {best_model[1]['metrics']['accuracy']:.3f}")
                 
                 time.sleep(1)
             
             # Step 3: Gesture-based interaction
-            print("\n👋 Step 3: Adding gesture-based controls...")
+            print("\nStep 3: Adding gesture-based controls...")
             
             gesture_commands = {
                 'thumbs_up': 'Continue with detailed analysis',
@@ -879,17 +879,17 @@ class IntegratedAIDemo:
                 'open_palm': 'Generate full report'
             }
             
-            print("👋 Gesture controls enabled:")
+            print("Gesture controls enabled:")
             for gesture, action in gesture_commands.items():
                 print(f"   {gesture}: {action}")
             
             # Simulate gesture interaction
             detected_gesture = "open_palm"  # Simulated
-            print(f"\n👋 Gesture detected: {detected_gesture}")
-            print(f"🎯 Action: {gesture_commands[detected_gesture]}")
+            print(f"\nGesture detected: {detected_gesture}")
+            print(f"Action: {gesture_commands[detected_gesture]}")
             
             if detected_gesture == "open_palm":
-                print("\n📋 Generating comprehensive business intelligence report...")
+                print("\nGenerating comprehensive business intelligence report...")
                 
                 # Create comprehensive report
                 report = {
@@ -928,22 +928,22 @@ class IntegratedAIDemo:
                 with open(report_path, 'w') as f:
                     json.dump(report, f, indent=2, default=str)
                 
-                print(f"✅ Business intelligence report saved: {report_path}")
+                print(f"SUCCESS: Business intelligence report saved: {report_path}")
             
             # Step 4: Multi-modal interaction summary
-            print("\n🔄 Multi-modal AI Assistant Summary:")
-            print("✅ Voice Commands: Natural language processing successful")
-            print("✅ Data Analysis: Comprehensive insights generated")
-            print("✅ Machine Learning: Predictive models built and evaluated")
-            print("✅ Gesture Recognition: Intuitive interaction enabled")
-            print("✅ Automated Reporting: Business intelligence created")
-            print("✅ Real-time Processing: All operations completed efficiently")
+            print("\nMulti-modal AI Assistant Summary:")
+            print("SUCCESS: Voice Commands: Natural language processing successful")
+            print("SUCCESS: Data Analysis: Comprehensive insights generated")
+            print("SUCCESS: Machine Learning: Predictive models built and evaluated")
+            print("SUCCESS: Gesture Recognition: Intuitive interaction enabled")
+            print("SUCCESS: Automated Reporting: Business intelligence created")
+            print("SUCCESS: Real-time Processing: All operations completed efficiently")
             
-            print("\n🎉 Custom AI Task Demo completed successfully!")
+            print("\nSUCCESS: Custom AI Task Demo completed successfully!")
             print("This demonstrates the power of integrating multiple AI technologies!")
             
         except Exception as e:
-            print(f"❌ Custom AI task demo error: {str(e)}")
+            print(f"ERROR: Custom AI task demo error: {str(e)}")
     
     def run(self):
         """Run the main demo loop."""
@@ -956,7 +956,7 @@ class IntegratedAIDemo:
                 choice = input("\nEnter your choice (0-9): ").strip()
                 
                 if choice == '0':
-                    print("\n👋 Thank you for using the Integrated AI/ML Demo!")
+                    print("\nThank you for using the Integrated AI/ML Demo!")
                     self.is_running = False
                 
                 elif choice == '1':
@@ -987,26 +987,26 @@ class IntegratedAIDemo:
                     self.run_custom_ai_task_demo()
                 
                 else:
-                    print("❌ Invalid choice! Please enter a number between 0-9.")
+                    print("ERROR: Invalid choice! Please enter a number between 0-9.")
                 
                 if self.is_running:
                     input("\nPress Enter to continue...")
             
             except KeyboardInterrupt:
-                print("\n\n👋 Demo interrupted by user. Goodbye!")
+                print("\n\nDemo interrupted by user. Goodbye!")
                 self.is_running = False
             
             except Exception as e:
-                print(f"\n❌ Error: {str(e)}")
+                print(f"\nERROR: {str(e)}")
                 input("Press Enter to continue...")
 
 
 def main():
     """Main function to run the integrated demo."""
-    print("🚀 Starting Integrated AI/ML Demo...")
+    print("Starting Integrated AI/ML Demo...")
     print("This demo showcases JARVIS assistant, gesture recognition, deep learning,")
     print("data analysis, conversational AI, and machine learning capabilities!")
-    print("\n⚠️  Note: Some features may require additional dependencies:")
+    print("\nNOTE: Some features may require additional dependencies:")
     print("   - Voice recognition: pip install SpeechRecognition pyttsx3")
     print("   - Gesture recognition: pip install mediapipe opencv-python")
     print("   - Deep learning: pip install tensorflow")
@@ -1016,7 +1016,7 @@ def main():
         demo = IntegratedAIDemo()
         demo.run()
     except Exception as e:
-        print(f"❌ Demo failed to start: {str(e)}")
+        print(f"ERROR: Demo failed to start: {str(e)}")
         print("Please ensure all dependencies are installed.")
 
 
