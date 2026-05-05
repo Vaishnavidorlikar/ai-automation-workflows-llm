@@ -47,6 +47,9 @@ A comprehensive **enterprise-grade AI automation platform** featuring a **Enterp
 
 ```
 ai-automation-workflows-llm/
+├── main.py                     # Core Python entry point
+├── integrated_demo.py          # Python demo runner
+├── dashboard.py                # Optional dashboard application
 ├── src/
 │   ├── enterprise_ai/                  # Enterprise AI AI assistant
 │   ├── gesture_recognition/     # Hand gesture detection
@@ -54,8 +57,8 @@ ai-automation-workflows-llm/
 │   ├── ml_models/              # Machine learning pipeline
 │   ├── workflows/              # Business automation
 │   └── utils/                  # Core utilities
-├── notebooks/
-│   └── AI_Automation_Demo.ipynb # Live demo notebook
+├── notebooks/                  # Optional dashboard notebooks
+│   └── AI_Automation_Demo.ipynb # Optional live demo notebook
 ├── api/
 │   └── app.py                  # REST API endpoints
 ├── config/
@@ -81,11 +84,24 @@ cp .env.example .env
 
 ### Run Demo
 ```bash
-# Run the complete AI automation demo
+# Run the core Python application
+python main.py --demo all
+
+# Or run the integrated Python demo runner
 python integrated_demo.py
+
+# Optional: launch the dashboard application
+python dashboard.py
 
 # Or start the API server
 uvicorn api.app:app --reload
+```
+
+### Optional Dashboard Notebooks
+Open notebook dashboards only when you want an interactive demo interface; the Python scripts are the main application layer.
+
+```bash
+jupyter notebook notebooks/AI_Automation_Demo.ipynb
 ```
 
 ### Live Demo in Colab

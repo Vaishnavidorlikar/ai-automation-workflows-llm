@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Run main.py",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Run integrated_demo.py",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/integrated_demo.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Run dashboard.py",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/dashboard.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}
