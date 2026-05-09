@@ -11,10 +11,10 @@ from unittest.mock import Mock, patch, MagicMock
 # Add src to path
 sys.path.append(str(Path('../src').absolute()))
 
-from utils.llm_client import LLMClient, MockProvider
-from agents.email_agent import EmailAgent
-from agents.report_agent import ReportAgent
-from agents.summarizer import SummarizerAgent
+from src.utils.llm_client import LLMClient, MockProvider
+from src.agents.email_agent import EmailAgent
+from src.agents.report_agent import ReportAgent
+from src.agents.summarizer import SummarizerAgent
 
 
 class TestLLMClient(unittest.TestCase):

@@ -15,12 +15,12 @@ from pathlib import Path
 # Add src to path for imports
 sys.path.append(str(Path('../src').absolute()))
 
-from utils.llm_client import LLMClient, LLMClientManager
-from agents.email_agent import EmailAgent
-from agents.report_agent import ReportAgent
-from agents.summarizer import SummarizerAgent
-from workflows.automate_reporting import AutomatedReportingWorkflow
-from workflows.customer_support_flow import CustomerSupportWorkflow
+from src.utils.llm_client import LLMClient, LLMClientManager
+from src.agents.email_agent import EmailAgent
+from src.agents.report_agent import ReportAgent
+from src.agents.summarizer import SummarizerAgent
+from src.workflows.automate_reporting import AutomatedReportingWorkflow
+from src.workflows.customer_support_flow import CustomerSupportWorkflow
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

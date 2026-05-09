@@ -449,7 +449,8 @@ class DataAnalyzer:
                       target_column: str,
                       model_type: str = "auto",
                       test_size: float = 0.2,
-                      random_state: int = 42) -> Dict:
+                      random_state: int = 42,
+                      **kwargs) -> Dict:
         """
         Build and evaluate machine learning models.
         
