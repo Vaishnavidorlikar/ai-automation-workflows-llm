@@ -9,7 +9,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow import keras
-import cv2
 import time
 import threading
 import queue

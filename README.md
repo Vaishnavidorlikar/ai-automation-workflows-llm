@@ -1,50 +1,54 @@
-# AI Workflow Orchestration Platform
+# Modular AI Workflow Automation Platform
 
-> A modular AI workflow orchestration platform integrating APIs, automation, monitoring, and multi-modal interaction concepts.
+> Demonstrates a modular workflow automation platform for API-driven orchestration, monitoring, and extensible automation pipelines.
 
 **Live Demo**: [Google Colab](https://colab.research.google.com/github/Vaishnavidorlikar/ai-automation-workflows-llm/blob/main/notebooks/AI_Automation_Demo.ipynb) | **GitHub**: [View Source](https://github.com/Vaishnavidorlikar/ai-automation-workflows-llm)
 
 ## Why This Project
 
-This project demonstrates how AI workflow orchestration, API integration, monitoring, and automation pipelines can be combined into a scalable data-driven platform architecture. It showcases production-style implementation of modular AI systems with emphasis on reliability, observability, and extensibility.
+This repository demonstrates how AI workflow orchestration, API integration, monitoring, and automation pipelines can be combined into a scalable data-driven platform architecture. It implements prototype architecture for modular AI systems with a focus on maintainable backend workflows and observability.
+
+> Note: Some integrations and workflows are demonstration modules intended to showcase orchestration architecture and extensible workflow design.
 
 ## Architecture Overview
 
 ```
-Input Layer (Voice/Text/API)
+API / Client Requests
     ↓
-Orchestration Layer (FastAPI + Workflow Engine)
+FastAPI Orchestration Layer
     ↓
-LLM Processing (OpenAI/Anthropic)
+Workflow Coordination (reporting, email, support)
     ↓
-Monitoring & Evaluation Pipeline
+LLM Providers (OpenAI, Anthropic, Mock)
     ↓
-Output / Automation Actions
+Logs, metrics, evaluation outputs
 ```
+
+![Architecture diagram](assets/architecture_diagram.png)
 
 ## Components
 
 ### AI Orchestration
-- Modular workflow execution engine
+- Modular workflow coordination
 - Configuration-driven orchestration
 - Event-driven processing architecture
 - Pluggable component system
 
 ### Voice Processing
-- Voice assistant integration (Jarvis demo)
-- Speech-to-text processing
-- Audio input handling
+- Voice assistant integration demo using speech-to-text APIs
+- Prototype audio input handling
+- Demo voice workflow support
 
 ### Gesture Recognition
-- Real-time gesture detection
-- MediaPipe integration
-- Multi-modal input processing
+- Gesture recognition prototype (MediaPipe demo)
+- Experimental multi-modal input processing
+- Prototype event signal handling
 
 ### Monitoring & Evaluation
-- Response quality assessment
-- Performance metrics tracking
-- Regression testing pipelines
-- Structured logging and observability
+- Example response quality assessment
+- Sample performance logging and observability
+- Demonstration regression validation support
+- Structured logging for traceability
 
 ### API Layer
 - RESTful endpoints with FastAPI
@@ -62,11 +66,21 @@ Output / Automation Actions
 
 * Managing multi-modal input pipelines with different data formats
 * Handling asynchronous API orchestration across multiple LLM providers
-* Monitoring LLM response quality and detecting hallucinations
+* Monitoring response consistency and example observability outputs
 * Structuring modular workflow execution for maintainability
 * Reducing workflow failures through comprehensive error handling
 * Implementing configuration-driven architecture for different environments
 * Building extensible provider integrations for future LLM services
+
+## Engineering Focus
+
+- Workflow orchestration
+- API integration
+- Backend automation
+- Observability and monitoring
+- Modular system design
+- Event-driven processing
+- AI workflow experimentation
 
 ## Sample API Usage
 
@@ -126,19 +140,19 @@ Content-Type: application/json
 * **Modular Workflow Execution**: Independent components for parallel processing
 * **Config-Driven Orchestration**: Environment-specific configurations without code changes
 * **Extensible Provider Integrations**: Easy addition of new LLM or service providers
-* **Monitoring Pipeline Separation**: Isolated observability systems for performance
+* **Observability Architecture**: Isolated observability systems for operational insight
 * **Asynchronous Processing**: Non-blocking operations for high-throughput scenarios
 * **Resource Pooling**: Connection reuse for external API calls
 
 ## Monitoring & Evaluation Examples
 
-### Response Quality Metrics
+### Example Monitoring Output
 ```
 Workflow: customer_support_flow
-├── Accuracy Score: 0.94
-├── Response Time: 320ms
-├── Hallucination Rate: 0.02
-└── User Satisfaction: 4.7/5
+├── Sample accuracy score: 0.94
+├── Sample response time: 320ms
+├── Example consistency indicator: low
+└── Sample trace event: workflow completed
 ```
 
 ### Workflow Execution Logs
@@ -151,14 +165,22 @@ Workflow: customer_support_flow
 ```
 
 ### Performance Dashboard Screenshot
-*[Dashboard visualization showing workflow throughput, error rates, and response times]*
+![Monitoring dashboard example](assets/monitoring_dashboard.png)
+
+### API Swagger UI Example
+![API Swagger UI example](assets/swagger_ui.png)
+
+### Workflow Logs Example
+![Workflow logs example](assets/workflow_logs.png)
 
 ## Project Structure
 
 ```
 ai-automation-workflows-llm/
+├── .github/                    # CI/CD workflows
 ├── api/
 │   └── app.py                  # REST API endpoints
+├── assets/                    # Architecture and screenshot visuals
 ├── src/
 │   ├── agents/
 │   │   ├── email_agent.py      # Email processing agent
@@ -194,11 +216,13 @@ ai-automation-workflows-llm/
 ├── tests/
 │   └── test_agents.py          # Unit tests
 ├── main.py                     # Core application entry point
-├── integrated_demo.py          # Demo runner
-├── dashboard.py                # Dashboard application
 ├── requirements.txt            # Python dependencies
+├── requirements-dev.txt        # Development dependencies
+├── requirements-optional.txt   # Optional demo and extended features
 ├── Dockerfile                  # Container definition
 ├── docker-compose.yml          # Multi-container setup
+├── .gitignore                  # Repository exclusions
+├── .env.example                # Environment template
 └── README.md
 ```
 
@@ -250,12 +274,6 @@ docker run -p 8000:8000 --env-file .env ai-workflow-platform
 ```bash
 # Run the core application
 python main.py --demo all
-
-# Or run the integrated demo
-python integrated_demo.py
-
-# Launch dashboard
-python dashboard.py
 ```
 
 ### Optional Dashboard Notebooks
@@ -266,32 +284,56 @@ jupyter notebook notebooks/AI_Automation_Demo.ipynb
 ### Live Demo in Colab
 **[Run in Google Colab](https://colab.research.google.com/github/Vaishnavidorlikar/ai-automation-workflows-llm/blob/main/notebooks/AI_Automation_Demo.ipynb)**
 
+## Project Setup
+
+### Core dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Development dependencies
+```bash
+pip install -r requirements-dev.txt
+```
+
+### Optional demo and extended features
+```bash
+pip install -r requirements-optional.txt
+```
+
 ## Tech Stack
 
 * **Python** - Core programming language
 * **FastAPI** - REST API framework
-* **OpenAI API** - Primary LLM provider
-* **Anthropic API** - Alternative LLM provider
-* **LangChain** - Orchestration and workflow management
-* **TensorFlow** - Deep learning frameworks
-* **MediaPipe** - Gesture recognition
-* **Scikit-learn** - Machine learning utilities
-* **NumPy/Pandas** - Data processing
-* **Plotly/Matplotlib** - Data visualization
-* **YAML** - Configuration management
 * **Docker** - Containerization
+* **REST APIs** - Service integration
+* **Async processing** - Non-blocking orchestration
+* **YAML configuration** - Environment-driven setup
+* **OpenAI / Anthropic APIs** - External AI providers
+* **TensorFlow / Scikit-learn** - Model and analytics utilities
+* **MediaPipe** - Gesture recognition prototype
+* **NumPy / Pandas** - Data processing
+* **Matplotlib** - Reporting and visualization
 * **pytest** - Testing framework
 
 ## Monitoring & Evaluation
 
-This platform includes comprehensive monitoring and evaluation pipelines:
+This project includes example monitoring and evaluation outputs to illustrate observability and workflow validation concepts:
 
-- **Prompt Evaluation**: Automated assessment of LLM prompt effectiveness
-- **Regression Testing**: Continuous validation of workflow reliability
-- **Response Monitoring**: Real-time tracking of API responses and performance
-- **Hallucination Tracking**: Detection and logging of inconsistent outputs
-- **Quality Metrics**: Accuracy, latency, and success rate measurements
-- **Logging**: Structured logging for debugging and analysis
+- **Prompt evaluation examples**: Demonstrates prompt and response quality checks
+- **Regression validation**: Example workflow consistency checks
+- **Response monitoring**: Sample tracking of API response performance
+- **Observability data**: Logging and metric examples for tracing
+- **Monitoring architecture**: Prototype dashboard and logs for operational insight
+
+## Potential Cloud Extensions
+
+- Deploy FastAPI on Cloud Run for containerized API hosting
+- Use Cloud Composer / Apache Airflow for workflow scheduling
+- Route events through Pub/Sub for event-driven orchestration
+- Capture logs and metrics with Cloud Logging and Cloud Monitoring
+- Store artifacts in Artifact Registry and integrate with Cloud Build
+- Use IAM and service accounts for secure API / workflow access
 
 ## Use Cases
 
@@ -328,8 +370,8 @@ This platform includes comprehensive monitoring and evaluation pipelines:
 
 ## ATS-Friendly Resume Points
 
-* Developed modular AI workflow orchestration platform integrating LLM APIs, monitoring pipelines, and automation workflows using Python and FastAPI.
-* Implemented evaluation and response monitoring pipelines to improve reliability and reduce workflow regressions.
+* Developed modular AI workflow orchestration platform integrating LLM APIs, observability outputs, and automation workflows using Python and FastAPI.
+* Implemented evaluation and response monitoring examples to improve reliability and reduce workflow regressions.
 * Built API-driven automation framework supporting multi-modal interaction workflows with structured logging and error handling.
 * Designed event-driven processing architecture for scalable backend operations and real-time data processing.
 * Containerized application with Docker for consistent deployment across environments.
